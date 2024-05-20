@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>multiplayer</title>
+    <style>
+
+
+html, body {
+    background-image: url("https://cdn.fbsbx.com/v/t59.2708-21/445215704_2441022002756390_4552829705664646474_n.gif?_nc_cat=104&ccb=1-7&_nc_sid=cf94fc&_nc_ohc=7SSD4DwIHKsQ7kNvgFSQd13&_nc_ht=cdn.fbsbx.com&oh=03_Q7cD1QGBpruedVLaBg7TyYJhc9HzizrTdsymqzMV2knWrudOog&oe=664A8EFF");
+    background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+    font-family: 'Trebuchet MS', sans-serif;
+color:white;
+            margin: 0;
+            padding: 0;
+overflow: hidden;
+width: 100vw; 
+    height: 100vh; 
+}
+
+.player-indicator {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 2vw;
+    margin-top: 17%;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+    text-shadow: 0 0 10px blue;
+    letter-spacing: 5px; 
+
+}
+
+@keyframes breathe {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.image-container,.image-container2, .image-container3{
+    display: block;
+    position: relative;
+    top:3vh;
+    width: 160vh;
+    margin: auto;
+    padding-top: 10px;
+}
+
+.image-container img {
+    margin-top: 25vh;
+    width: 120vh;
+    height: 70vh;
+    position: absolute;
+    left: 80vh;
+    transform: translate(-50%, -30%);
+}
+
+.image-container2 img {
+    margin-top: 25vh;
+    width: 120vh;
+    height: 70vh;
+    position: absolute;
+    left: 80vh;
+    transform: translate(-50%, -30%);
+}
+
+.image-container3 img {
+    margin-top: 120vh;
+    width: 120vh;
+    height: 70vh;
+    position: absolute;
+    left: 80vh;
+    transform: translate(-50%, -30%);
+}
+
+.image-container3 {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    flex-wrap: wrap; 
+}
+
+        .image-container3 h3 {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 3vw;
+    margin-top: 29vh;
+    position: absolute;
+    top: 1vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+    text-shadow: 0 0 10px orange;
+    letter-spacing: 5px;
+}
+
+        }
+
+        .image-container3 button {
+            margin: 40px;
+            transform: translate(280%, 180%);
+}
+
+
+.image-container2 h2{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 2vw;
+    margin-top: 29vh;
+    position: absolute;
+    top: 1vh;
+    left: 80vh;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+    text-shadow: 0 0 10px blue; 
+    letter-spacing: 5px;
+}
+
+.image-container2 #carOptions,.image-container3 #mapOptions {
+    position: absolute;
+    top: 47vh;
+    left: 80vh;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 2;
+}
+
+
+#carOptions, #mapOptions{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 7vh;
+}
+
+.image-container h1 {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 3vw;
+    margin-top: 29vh;
+    position: absolute;
+    left: 80vh;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+    text-shadow: 0 0 10px orange; 
+    letter-spacing: 5px;
+}
+
+
+.image-container div {
+    margin-top: 49vh;
+}
+
+button.breathing:hover{
+    animation: breathe 0.5s infinite alternate;
+	cursor:pointer;
+}    
+
+        .grid {
+            display: none;
+            grid-template-columns: repeat(8, 18vh);
+            grid-template-rows: repeat(8, 11vh);
+            gap: 2px;
+            border: 5px solid white;
+            border-radius: 9px;
+            width: fit-content;
+            background-color: transparent;
+            animation: glow 2s infinite;
+	    display: none;
+margin-left: 19vh;
+margin-top: auto;
+        }
+
+        .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid white;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+font-size: 1.6vw;
+text-align:center;
+}
+
+@keyframes glow1 {
+    0% {
+        box-shadow: 0 0 10px rgba(128, 0, 128, 0.6), 0 0 20px rgba(128, 0, 128, 0.6), 0 0 30px rgba(128, 0, 128, 0.6), 0 0 40px rgba(128, 0, 128, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(128, 0, 128, 0.6), 0 0 30px rgba(128, 0, 128, 0.6), 0 0 40px rgba(128, 0, 128, 0.6), 0 0 50px rgba(128, 0, 128, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(128, 0, 128, 0.6), 0 0 20px rgba(128, 0, 128, 0.6), 0 0 30px rgba(128, 0, 128, 0.6), 0 0 40px rgba(128, 0, 128, 0.6);
+    }
+}
+
+.glow1-animation {
+    animation: glow1 2s infinite alternate;
+            border: 5px solid purple;
+}
+
+
+@keyframes glow2 {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 0, 139, 0.6), 0 0 20px rgba(0, 0, 139, 0.6), 0 0 30px rgba(0, 0, 139, 0.6), 0 0 40px rgba(0, 0, 139, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 0, 139, 0.6), 0 0 30px rgba(0, 0, 139, 0.6), 0 0 40px rgba(0, 0, 139, 0.6), 0 0 50px rgba(0, 0, 139, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(0, 0, 139, 0.6), 0 0 20px rgba(0, 0, 139, 0.6), 0 0 30px rgba(0, 0, 139, 0.6), 0 0 40px rgba(0, 0, 139, 0.6);
+    }
+}
+
+.glow2-animation {
+    animation: glow2 2s infinite alternate;
+            border: 5px solid darkblue;
+}
+
+
+@keyframes glow3 {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.6), 0 0 50px rgba(255, 255, 255, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.6);
+    }
+}
+
+.glow3-animation {
+    animation: glow3 2s infinite alternate;
+            border: 5px solid white;
+}
+
+.turn-indicator {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 1.2rem;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --step--3: clamp(0.61rem, calc(0.39rem + 1.82vw), 1.02rem);
+  --step--2: clamp(0.69rem, calc(0.36rem + 2.62vw), 1.28rem);
+  --step--1: clamp(0.78rem, calc(0.32rem + 3.66vw), 1.60rem);
+  --step-0: clamp(0.88rem, calc(0.25rem + 5.00vw), 2.00rem);
+  --step-1: clamp(0.98rem, calc(0.14rem + 6.74vw), 2.50rem);
+  --step-2: clamp(1.11rem, calc(-0.01rem + 8.97vw), 3.13rem);
+  --step-3: clamp(1.25rem, calc(-0.23rem + 11.83vw), 3.91rem);
+  --step-4: clamp(1.40rem, calc(-0.53rem + 15.47vw), 4.88rem);
+  --step-5: clamp(1.58rem, calc(-0.94rem + 20.12vw), 6.10rem);
+}
+
+
+.container {
+    width: min(30vh, 50vh);
+    align-self: center;
+    background-color: transparent;
+    border-radius: 20px;
+    box-shadow: 0 0 80px rgba(255, 255, 255, 0.5);
+display:none;
+}
+
+.hello {
+border-radius: 20px;
+}
+
+ 
+.dice {
+    font-size: 15vw;
+    color: white;
+    text-align: center;
+    margin-bottom: 1vh;
+}
+
+
+#roll {
+    display: none;
+    cursor: pointer;
+    background: #000;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    margin: 0 auto;
+    margin-bottom: 2em;
+    transition: opacity 0.5s ease;
+}
+
+#roll:hover {
+    opacity: 0.5;
+}
+
+.ready-button {
+    display: block;
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    margin: 0 auto;
+    margin-bottom: 2em;
+    transition: opacity 0.5s ease;
+}
+
+.ready-button:hover {
+    opacity: 0.5;
+}
+
+.roll-animation {
+    animation: rollDice 0.8s;
+}
+
+@keyframes rollDice {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(-720deg)
+    }
+    100% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(720deg)
+    }
+}
+
+#whole {
+    display: flex;
+    padding: 1em 0;
+}
+
+#player1-token {
+    width: 12.4vh;
+    height: 3.35vh;
+background-size: contain;
+position:absolute;
+display:none;
+padding:1vh;
+}
+
+#player2-token {
+    width: 12.4vh;
+    height: 3.35vh;
+background-size: contain;
+position:absolute;
+display:none;
+}
+
+.titletext {
+  font-family: 'Brush Script MT', cursive;
+    font-size: 1.5vw; /* Adjust the font size */
+  overflow-wrap: break-word;
+    color: #fff; /* White text color */
+    text-shadow: 0 0 20px blue; /* Glowing effect */
+}
+
+.titletext2 {
+  font-family: 'Brush Script MT', cursive;
+    font-size: 1.5vw; /* Adjust the font size */
+  overflow-wrap: break-word;
+    color: #fff; /* White text color */
+    text-shadow: 0 0 20px orange; /* Glowing effect */
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div id="carSelection">
+        <div class="image-container2">
+            <img src="https://z-p3-scontent.fmnl8-1.fna.fbcdn.net/v/t1.15752-9/440841840_968108641251997_7040676330024968678_n.png?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFgdM7oztUVq_QSOaWuAPhvjlpGnZW1F9eOWkadlbUX1wfYMDcNvqvZqNsPx-ILDwEHcqjnDCgzDI5T_8ZmQm9s&_nc_ohc=JQxU_DQE1CIQ7kNvgGKA9AM&_nc_ht=z-p3-scontent.fmnl8-1.fna&oh=03_Q7cD1QEDNTB9LDCUWd7f79orTvmGCGG8lrDk8L2396bMKPgIzw&oe=666AD53F" alt="Background Image">
+            <h2 id="playerIndicator" class="player-indicator"></h2>
+            <div id="carOptions"></div>
+        </div>
+    </div>
+
+    <div id="mapSelection" style="display:none;">
+        <div class="image-container3">
+            <img src="https://z-p3-scontent.fmnl8-1.fna.fbcdn.net/v/t1.15752-9/440841840_968108641251997_7040676330024968678_n.png?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFgdM7oztUVq_QSOaWuAPhvjlpGnZW1F9eOWkadlbUX1wfYMDcNvqvZqNsPx-ILDwEHcqjnDCgzDI5T_8ZmQm9s&_nc_ohc=JQxU_DQE1CIQ7kNvgGKA9AM&_nc_ht=z-p3-scontent.fmnl8-1.fna&oh=03_Q7cD1QEDNTB9LDCUWd7f79orTvmGCGG8lrDk8L2396bMKPgIzw&oe=666AD53F" alt="Background Image">
+            <h3>MAP SELECTION</h3>
+            <div id="mapOptions"></div>
+        </div>
+    </div>
+
+
+<div id = "whole" class = "whole">
+        <div class="player-token" id="player1-token"></div>
+        <div class="player-token" id="player2-token"></div>
+
+<div class="grid" id="grid" style="display: none; margin-right:20vh; "></div>
+<div id="container" class="container">
+    <div id="dice" class="dice">&#9860;</div>
+    <button id="ready" class="ready-button" type="submit">Ready</button>
+    <button id="roll" class="ready-button" type="submit">Roll Dice</button>
+    <div id="turn-indicator" class="turn-indicator">Player 1's Turn</div>
+    
+</div>
+</div>
+    <script>
+
+        const cars = [
+            { color: 'Crimson Rocket', image: 'https://z-p3-scontent.fmnl8-3.fna.fbcdn.net/v/t1.15752-9/440763171_1103449007594709_8281389820417327288_n.png?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGTaCo7pl66nLEgPFKmKwlqzT7hsA1FQnbNPuGwDUVCdqDZCs1i9EpUaQyM-3tgE5EUQuriAndUsaYyUyAhkRxl&_nc_ohc=iwBjhqOCbT8Q7kNvgExNOij&_nc_ht=z-p3-scontent.fmnl8-3.fna&oh=03_Q7cD1QHIfrhkRCnY49XZv8D78-f6ofA3LfsZE3mrdszVoq2Usg&oe=666ACC00' }, 
+            { color: 'Racing Verde', image: 'https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.15752-9/442414219_479999871260125_6709472846212285757_n.png?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=wr0rGgf2im0Q7kNvgEThxDe&_nc_ht=scontent.fmnl4-6.fna&oh=03_Q7cD1QH-2GlPnS9c3MCRptpgq_GS3Hh5opP2KhR2N9bhPhg42g&oe=6670A8C2' },
+            { color: 'Golden Flash', image: 'https://z-p3-scontent.fmnl8-1.fna.fbcdn.net/v/t1.15752-9/440832120_1485944291999371_7081883990501278928_n.png?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGaa9x7zk444mjxE3iMtwRLH5rYWLzf_H4fmthYvN_8fsiI47PMWFP6TjI_soTwbf8nAj-DQKuH5ThomU77fZTz&_nc_ohc=aqa45sdFz9YQ7kNvgGDkQRX&_nc_ht=z-p3-scontent.fmnl8-1.fna&oh=03_Q7cD1QEiyhuT4N5FWMdA6Abc4L-H_Yaxt-6OuybtKJT2NULBLw&oe=666AC86E' } 
+        ];
+
+const maps = [
+    { name: 'Urban Twilight', image: 'https://z-p3-scontent.fmnl8-3.fna.fbcdn.net/v/t1.15752-9/441268716_440256838593686_7452703842702515618_n.png?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGW8KW6iYUFEAlb43X7k9L5DdfVAwQ2AOUN19UDBDYA5dVSfEdJZIv6jwUja6mj2irQd54-BJfC5MEdWFU_PpFZ&_nc_ohc=jHX4sY6uD4gQ7kNvgHlP0oR&_nc_ht=z-p3-scontent.fmnl8-3.fna&oh=03_Q7cD1QG6Fnn1o7afyzHA1ZYTE0B7fARORusjOmTcqrp4LrY6kw&oe=666ACCCD' },
+    { name: 'Falcon Campus', image: 'https://z-p3-scontent.fmnl8-3.fna.fbcdn.net/v/t1.15752-9/441201836_1114658439591403_8623409516989069681_n.png?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeG5XsFBzDFYEvumlMzxEYsWC7mF80RVG90LuYXzRFUb3exa1pPv5GEnjy2cfIXTgEcU19oisEuVW04L2ndhUA-J&_nc_ohc=6WqrgL8PaAMQ7kNvgHwSwWq&_nc_ht=z-p3-scontent.fmnl8-3.fna&oh=03_Q7cD1QHD7Xt3X4o2tNIn5qVlrK2ux4GLBW0xOT0BQW2X7uaV2g&oe=666AE687' },
+    { name: 'Frosty Summit Circuit', image: 'https://z-p3-scontent.fmnl8-1.fna.fbcdn.net/v/t1.15752-9/441216197_328669926649796_9088809877372596938_n.png?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHn6EPJIzvvN4esDXWLOMefQ0FDkrZYZ6dDQUOStlhnp32J7Q3mxBJg3UtmUJs6PNGczxy5PPH55Yi-jbbcH0MT&_nc_ohc=nkkL-MlHtXoQ7kNvgFZRhBs&_nc_ht=z-p3-scontent.fmnl8-1.fna&oh=03_Q7cD1QErcqDV6ZKuCEirIrTrK2LwWsQklEoziq2UryydOEGlzg&oe=666AC9BE' }
+];
+
+
+
+        let currentPicker = 1;
+        let player1Car, aiCar, selectedMap;
+
+        displaySoloOptions();
+        nextPlayer();
+
+function displaySoloOptions() {
+    const carOptionsDiv = document.getElementById('carOptions');
+    carOptionsDiv.innerHTML = '';
+    cars.forEach(car => {
+        const carButton = document.createElement('button');
+        const carName = document.createElement('span'); // Create a span element for the car name
+        carName.textContent = car.color; // Set the text content
+        carName.classList.add('titletext'); // Apply the same CSS class as for the map names
+        carButton.appendChild(carName); // Append the car name to the button
+        carButton.style.backgroundImage = `url(${car.image})`;
+        carButton.style.backgroundSize = 'cover';
+        carButton.style.width = '130px';
+        carButton.style.height = '130px';
+        carButton.style.borderRadius = '25px';
+        carButton.style.border = 'none';
+        carButton.style.marginBottom = '30px';
+        carButton.onclick = () => selectSoloCar(car);
+        carButton.classList.add('breathing');
+        carOptionsDiv.appendChild(carButton);
+    });
+}
+
+
+        function nextPlayer() {
+            document.getElementById('playerIndicator').textContent = 'CAR SELECTION: PLAYER ' + currentPicker ;
+        }
+
+function selectSoloCar(car) {
+    switch (car.color) {
+        case 'Crimson Rocket':
+            car.image = 'https://scontent.xx.fbcdn.net/v/t1.15752-9/441283019_1683579332457316_1107456220334727811_n.png?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_ohc=x8N7ASa8zEwQ7kNvgEKBXcr&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QHLoJ92qrxwfy9e7H17uRWyZlEhyYti7zj8y9rTNBRJFw&oe=667136EC';
+            break;
+        case 'Racing Verde':
+            car.image = 'https://scontent.xx.fbcdn.net/v/t1.15752-9/441908733_294321903641163_4361482603137304955_n.png?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=dO4HHGmcnUwQ7kNvgH48Elt&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QE5IMMKLqn9nHJRsue6maG6EVFzO64F57ElcwXNJeciCg&oe=66712FAD';
+            break;
+        case 'Golden Flash':
+            car.image = 'https://scontent.xx.fbcdn.net/v/t1.15752-9/441333015_415411751450835_8675603239452989795_n.png?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=_ouJIVMrlmQQ7kNvgEA7pat&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QFAqnNkna_tx0fd4H0Qnq_0t6JtWIATYVWezjdIRT0tkA&oe=66711538';
+            break;
+        default:
+            break;
+    }
+
+    if (currentPicker === 1) {
+        player1Car = car;
+        document.getElementById('player1-token').style.backgroundImage = `url(${car.image})`;
+        document.getElementById('carSelection').style.display = 'none';
+        var aiCar = {
+            color: 'AI Car',
+            image: 'https://scontent.fmnl4-7.fna.fbcdn.net/v/t1.15752-9/441877927_1191848728913895_1126383631952716933_n.png?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=HOdP4zdDQiAQ7kNvgE_7el0&_nc_ht=scontent.fmnl4-7.fna&oh=03_Q7cD1QG1RIt3Bv7QPrsCFB1FP7ezrHbDxzq_G-A9YOKTaO8UmA&oe=667259D2'
+        };
+        player2Car = aiCar; // Moved inside the if block to ensure it's executed when currentPicker === 1
+        document.getElementById('player2-token').style.backgroundImage = `url(${aiCar.image})`;
+        showMapSelection();
+    }
+}
+
+
+
+function showMapSelection() {
+    const mapSelectionDiv = document.getElementById('mapSelection');
+    mapSelectionDiv.style.display = 'block';
+    const mapOptionsDiv = document.getElementById('mapOptions');
+    mapOptionsDiv.innerHTML = ''; 
+    maps.forEach((map, index) => {
+        const mapButton = document.createElement('button');
+        const mapName = document.createElement('span'); // Create a span element for the map name
+        mapName.textContent = map.name; // Set the text content
+        mapName.classList.add('titletext2'); // Apply the CSS class for styling
+        mapButton.appendChild(mapName); // Append the map name to the button
+        mapButton.style.backgroundImage = `url(${map.image})`;
+        mapButton.style.backgroundSize = 'cover'; 
+        mapButton.style.width = '130px';
+        mapButton.style.height = '130px';
+        mapButton.style.borderRadius = '25px';
+        mapButton.style.border = 'none'; 
+        mapButton.style.marginBottom = '30px'; 
+        mapButton.onclick = () => selectMap(map);
+        mapButton.classList.add('breathing');
+        mapOptionsDiv.appendChild(mapButton);
+    });
+}
+
+
+
+function selectMap(map) {
+    selectedMap = map;
+    // Remove any existing glow animation class from the grid
+    document.getElementById('grid').className = 'grid';
+
+    switch (map.name) {
+        case 'Urban Twilight':
+            selectedMapImageUrl = 'https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.15752-9/441273892_1448639092453597_801473306428731636_n.png?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Tn6Ez2JS00wQ7kNvgEaffMu&_nc_ht=scontent.fmnl4-6.fna&oh=03_Q7cD1QFy_95U52HRlWqOpt5av0REWBqrBi7cP7ttzlYtVRexJw&oe=66712014';
+            document.getElementById('grid').classList.add('glow1-animation');
+            break;
+        case 'Falcon Campus':
+            selectedMapImageUrl = 'https://scontent.fmnl4-7.fna.fbcdn.net/v/t1.15752-9/442004262_357590400663023_3593475093920565448_n.png?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Wp5V1IsdHsoQ7kNvgHl4_fN&_nc_ht=scontent.fmnl4-7.fna&oh=03_Q7cD1QHAWryyGaMV3dz6drFKAwMhNVezVatz5m_pNtXh7p9kgA&oe=66711505';
+            document.getElementById('grid').classList.add('glow2-animation');
+            break;
+        case 'Frosty Summit Circuit':
+            selectedMapImageUrl = 'https://scontent.fmnl4-5.fna.fbcdn.net/v/t1.15752-9/441873095_419124254228975_373173407697851597_n.png?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=rVcfobQ4au0Q7kNvgHJDaMj&_nc_ht=scontent.fmnl4-5.fna&oh=03_Q7cD1QF2l5wzNr2aYpFJl4bT4S8WFcUIQLj9a6RnDifovJZ04A&oe=66711CE6';
+            document.getElementById('grid').classList.add('glow3-animation');
+            break;
+        default:
+            // Default case
+            break;
+    }
+    document.getElementById('mapSelection').style.display = 'none';
+    startTutorial();
+}
+
+
+
+
+        function startTutorial() {
+            const tutorialDiv = document.createElement('div');
+            tutorialDiv.id = 'tutorialDiv'; 
+            tutorialDiv.innerHTML = `
+                <div style="border-radius: 15px;">
+                    <div style="background-color: #0D212C; padding: 20px; border-radius: 5px; box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);">
+                        <video controls style="width: 700px; height: 300px;">
+                            <source src="tutorial.mp4" type="video/mp4">
+                        </video>
+                    </div><br>
+                    <img src="https://scontent.fmnl8-3.fna.fbcdn.net/v/t1.15752-9/441891277_451573170793704_7582064324315720307_n.png?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=XMoPy-wj_CIQ7kNvgHRxpON&_nc_ht=scontent.fmnl8-3.fna&oh=03_Q7cD1QEfDRCVYoZ-a-7kGAo_SAsn6ebbPBR-5VuZCzcy7aEv2g&oe=666FFF82" onclick="skipTutorial()" style="cursor: pointer; width: 40vh; height: 13vh; position: absolute; top: 100%; left: 29%; transform: translate(-50%, -50%); animation: breathe 2s infinite alternate;">
+                </div>
+            `;
+            document.body.appendChild(tutorialDiv);
+            tutorialDiv.style.position = 'fixed';
+            tutorialDiv.style.top = '45%';
+            tutorialDiv.style.left = '50%';
+            tutorialDiv.style.transform = 'translate(-50%, -50%)';
+        }
+
+
+function skipTutorial() {
+    const tutorialDiv = document.getElementById('tutorialDiv');
+    if (tutorialDiv) {
+        tutorialDiv.remove();
+    }
+    document.getElementById('grid').style.display = 'grid';
+    document.body.style.backgroundImage = `url(${selectedMapImageUrl})`;
+    document.body.style.backgroundAttachment = 'fixed';
+    document.body.style.backgroundPosition = "center";
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundSize = 'cover';
+
+    // Make player tokens and container visible
+    document.getElementById('player1-token').style.display = 'block';
+    document.getElementById('player2-token').style.display = 'block';
+    document.getElementsByClassName('container')[0].style.display = 'block';
+}
+
+
+
+
+                function createGrid(rows, cols) {
+            let gridHtml = '';
+            const texts = [
+                "1", "2", "3", "4", "5", "6", "7", 
+                "8", "9", "4", "11", "12", "13", "14", "15", 
+                "16","17", "18", "19", "20", "21", "22", "23",
+                "24", "25", "26", "27", "28", "29", "30",
+                "31", "32", "33", "34", "35", "36", "37",
+                "38", "38", "40", "41", "42", "43", "44",
+                "45", "46", "47", "48", "49", "50", "51",
+                "52", "53", "54", "55", "56", "57", "58",
+                "59", "60", "61", "62", "63", "64",
+            ];
+            let textIndex = 0;
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    gridHtml += `<div class="cell">${texts[textIndex]}</div>`;
+                    textIndex = (textIndex + 1) % texts.length;
+                }
+            }
+            document.getElementById('grid').innerHTML = gridHtml;
+        }
+
+        createGrid(8, 8);
+
+const readyButtonEl = document.getElementById('ready');
+const rollButtonEl = document.getElementById('roll');
+const dice = document.getElementsByClassName('dice')[0];
+const currentPlayerIndicator = document.getElementById('turn-indicator');
+let currentPlayer = 1;
+
+function switchPlayer() {
+    // Toggle currentPlayer between 1 and 2
+    currentPlayer = currentPlayer === 1 ? 2 : 1;
+
+    // Update turn indicator based on the current player
+    if (currentPlayer === 1) {
+        currentPlayerIndicator.textContent = "Player 1's Turn";
+    } else {
+        currentPlayerIndicator.textContent = "AI's Turn";
+        setTimeout(diceRoll, 3000);
+    }
+}
+
+function rolledDice() {
+    let rollResult = Math.floor(Math.random() * 6) + 1; 
+    let diceFace = getDiceFace(rollResult);
+    dice.innerHTML = diceFace;
+}
+
+function getDiceFace(rollResult) {
+    switch (rollResult) {
+        case 1:
+            return "&#9856;"
+            break;
+        case 2:
+            return "&#9857;";
+            break;
+        case 3:
+            return "&#9858;";
+            break;
+        case 4:
+            return "&#9859;";
+            break;
+        case 5:
+            return "&#9860;"
+            break;
+        case 6:
+            return "&#9861;";
+            break;
+    
+        default:
+            return "";
+            break;
+    }
+}
+
+function diceRoll() {
+    rollButtonEl.disabled = true;
+    rollButtonEl.style.backgroundColor = '#ccc';
+    rollButtonEl.style.color = '#999';
+    rollButtonEl.style.opacity = '0.5';
+    rollButtonEl.style.cursor = 'not-allowed';
+
+    dice.classList.add("roll-animation");
+    setTimeout(() => {
+        dice.classList.remove("roll-animation");
+        const rollResult = Math.floor(Math.random() * 6) + 1;
+        const diceFace = getDiceFace(rollResult);
+        dice.innerHTML = diceFace;
+
+        // Move the token
+        const playerToken = document.getElementById(`player${currentPlayer}-token`);
+        let currentPosition = parseInt(playerToken.dataset.position) || 0;
+        currentPosition += rollResult;
+
+        // Ensure the position doesn't exceed the grid limit
+        currentPosition = Math.min(currentPosition, 63);
+
+        // Update token position
+        playerToken.dataset.position = currentPosition;
+        const cells = document.querySelectorAll('.cell');
+        cells[currentPosition - 1].appendChild(playerToken); // Subtract 1 to account for array index starting at 0
+
+        // Switch player
+        switchPlayer();
+
+setTimeout(() => {
+    // Display appropriate buttons based on player turn
+    if (currentPlayer === 1) {
+        // Player 1's turn
+        readyButtonEl.innerText = "Ready";
+        rollButtonEl.innerText = "Roll Dice";
+        readyButtonEl.style.display = 'block';
+        rollButtonEl.style.display = 'none';
+        rollButtonEl.style.backgroundColor = '#000';
+        rollButtonEl.style.color = '#fff';
+        rollButtonEl.style.opacity = '1';
+        readyButtonEl.style.backgroundColor = '#000';
+        readyButtonEl.style.color = '#fff';
+        readyButtonEl.style.opacity = '1';
+        rollButtonEl.style.cursor = 'pointer';
+        readyButtonEl.style.cursor = 'pointer';
+        rollButtonEl.disabled = false;
+        readyButtonEl.disabled = false;
+    } else {
+        // AI's turn
+        readyButtonEl.style.display = 'block';
+        rollButtonEl.style.display = 'none';
+        rollButtonEl.disabled = true;
+        readyButtonEl.disabled = true;
+        rollButtonEl.innerText = "AI Rolling...";
+        readyButtonEl.innerText = "AI Rolling...";
+        readyButtonEl.style.backgroundColor = '#000';
+        readyButtonEl.style.color = '#fff';
+        readyButtonEl.style.opacity = '0.5';
+        readyButtonEl.style.cursor = 'not-allowed';
+        rollButtonEl.style.backgroundColor = '#000';
+        rollButtonEl.style.color = '#fff';
+        rollButtonEl.style.opacity = '0.5';
+        rollButtonEl.style.cursor = 'not-allowed';
+    }
+}, 1000);
+    }, 1000);
+}
+
+rollButtonEl.onclick = diceRoll;
+
+readyButtonEl.onclick = function() {
+    readyButtonEl.style.display = 'none';
+    rollButtonEl.style.display = 'block';
+};
+
+</script>
+
+</body>
+</html>
+
+
+    </script>
+</body>
+</html>

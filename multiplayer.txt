@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Or Dice : Multiplayer</title>
+    <style>
+
+
+html, body {
+    background-image: url("mainbg.gif");
+    background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+    font-family: 'Trebuchet MS', sans-serif;
+color:white;
+            margin: 0;
+            padding: 0;
+overflow: hidden;
+width: 100vw; 
+    height: 100vh; 
+}
+
+.player-indicator {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 2vw;
+    margin-top: 17%;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+    text-shadow: 0 0 10px blue;
+    letter-spacing: 5px; 
+
+}
+
+@keyframes breathe {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.image-container,.image-container2, .image-container3{
+    display: block;
+    position: relative;
+    top:3vh;
+    width: 160vh;
+    margin: auto;
+    padding-top: 10px;
+}
+
+.image-container img {
+    margin-top: 25vh;
+    width: 120vh;
+    height: 70vh;
+    position: absolute;
+    left: 80vh;
+    transform: translate(-50%, -30%);
+}
+
+.image-container2 img {
+    margin-top: 25vh;
+    width: 120vh;
+    height: 70vh;
+    position: absolute;
+    left: 80vh;
+    transform: translate(-50%, -30%);
+}
+
+.image-container3 img {
+    margin-top: 120vh;
+    width: 120vh;
+    height: 70vh;
+    position: absolute;
+    left: 80vh;
+    transform: translate(-50%, -30%);
+}
+
+.image-container3 {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    flex-wrap: wrap; 
+}
+
+        .image-container3 h3 {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 3vw;
+    margin-top: 29vh;
+    position: absolute;
+    top: 1vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+    text-shadow: 0 0 10px orange;
+    letter-spacing: 5px;
+}
+
+        }
+
+        .image-container3 button {
+            margin: 40px;
+            transform: translate(280%, 180%);
+}
+
+
+.image-container2 h2{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 2vw;
+    margin-top: 29vh;
+    position: absolute;
+    top: 1vh;
+    left: 80vh;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+    text-shadow: 0 0 10px blue; 
+    letter-spacing: 5px;
+}
+
+.image-container2 #carOptions,.image-container3 #mapOptions {
+    position: absolute;
+    top: 47vh;
+    left: 80vh;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 2;
+}
+
+
+#carOptions, #mapOptions{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 7vh;
+}
+
+.image-container h1 {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 3vw;
+    margin-top: 29vh;
+    position: absolute;
+    left: 80vh;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+    text-shadow: 0 0 10px orange; 
+    letter-spacing: 5px;
+}
+
+
+.image-container div {
+    margin-top: 49vh;
+}
+
+button.breathing:hover{
+    animation: breathe 0.5s infinite alternate;
+	cursor:pointer;
+}    
+
+        .grid {
+            display: none;
+            grid-template-columns: repeat(8, 18vh);
+            grid-template-rows: repeat(8, 11vh);
+            gap: 2px;
+            border: 5px solid white;
+            border-radius: 9px;
+            width: fit-content;
+            background-color: transparent;
+            animation: glow 2s infinite;
+	    display: none;
+margin-left: 19vh;
+margin-top: auto;
+        }
+
+        .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid white;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+font-size: 1.6vw;
+text-align:center;
+}
+
+@keyframes glow1 {
+    0% {
+        box-shadow: 0 0 10px rgba(128, 0, 128, 0.6), 0 0 20px rgba(128, 0, 128, 0.6), 0 0 30px rgba(128, 0, 128, 0.6), 0 0 40px rgba(128, 0, 128, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(128, 0, 128, 0.6), 0 0 30px rgba(128, 0, 128, 0.6), 0 0 40px rgba(128, 0, 128, 0.6), 0 0 50px rgba(128, 0, 128, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(128, 0, 128, 0.6), 0 0 20px rgba(128, 0, 128, 0.6), 0 0 30px rgba(128, 0, 128, 0.6), 0 0 40px rgba(128, 0, 128, 0.6);
+    }
+}
+
+.glow1-animation {
+    animation: glow1 2s infinite alternate;
+            border: 5px solid purple;
+}
+
+
+@keyframes glow2 {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 0, 139, 0.6), 0 0 20px rgba(0, 0, 139, 0.6), 0 0 30px rgba(0, 0, 139, 0.6), 0 0 40px rgba(0, 0, 139, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 0, 139, 0.6), 0 0 30px rgba(0, 0, 139, 0.6), 0 0 40px rgba(0, 0, 139, 0.6), 0 0 50px rgba(0, 0, 139, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(0, 0, 139, 0.6), 0 0 20px rgba(0, 0, 139, 0.6), 0 0 30px rgba(0, 0, 139, 0.6), 0 0 40px rgba(0, 0, 139, 0.6);
+    }
+}
+
+.glow2-animation {
+    animation: glow2 2s infinite alternate;
+            border: 5px solid darkblue;
+}
+
+
+@keyframes glow3 {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.6), 0 0 50px rgba(255, 255, 255, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.6);
+    }
+}
+
+.glow3-animation {
+    animation: glow3 2s infinite alternate;
+            border: 5px solid white;
+}
+
+.turn-indicator {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 1.2rem;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --step--3: clamp(0.61rem, calc(0.39rem + 1.82vw), 1.02rem);
+  --step--2: clamp(0.69rem, calc(0.36rem + 2.62vw), 1.28rem);
+  --step--1: clamp(0.78rem, calc(0.32rem + 3.66vw), 1.60rem);
+  --step-0: clamp(0.88rem, calc(0.25rem + 5.00vw), 2.00rem);
+  --step-1: clamp(0.98rem, calc(0.14rem + 6.74vw), 2.50rem);
+  --step-2: clamp(1.11rem, calc(-0.01rem + 8.97vw), 3.13rem);
+  --step-3: clamp(1.25rem, calc(-0.23rem + 11.83vw), 3.91rem);
+  --step-4: clamp(1.40rem, calc(-0.53rem + 15.47vw), 4.88rem);
+  --step-5: clamp(1.58rem, calc(-0.94rem + 20.12vw), 6.10rem);
+}
+
+
+.container {
+    width: min(30vh, 50vh);
+    align-self: center;
+    background-color: transparent;
+    border-radius: 20px;
+    box-shadow: 0 0 80px rgba(255, 255, 255, 0.5);
+display:none;
+}
+
+.hello {
+border-radius: 20px;
+}
+
+ 
+.dice {
+    font-size: 15vw;
+    color: white;
+    text-align: center;
+    margin-bottom: 1vh;
+}
+
+
+#roll {
+    display: none;
+    cursor: pointer;
+    background: #000;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    margin: 0 auto;
+    margin-bottom: 2em;
+    transition: opacity 0.5s ease;
+}
+
+#roll:hover {
+    opacity: 0.5;
+}
+
+.ready-button {
+    display: block;
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    margin: 0 auto;
+    margin-bottom: 2em;
+    transition: opacity 0.5s ease;
+}
+
+.ready-button:hover {
+    opacity: 0.5;
+}
+
+.roll-animation {
+    animation: rollDice 0.8s;
+}
+
+@keyframes rollDice {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(-720deg)
+    }
+    100% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(720deg)
+    }
+}
+
+#whole {
+    display: flex;
+    padding: 1em 0;
+}
+
+#player1-token {
+    width: 12.4vh;
+    height: 3.35vh;
+background-size: contain;
+position:absolute;
+display:none;
+padding:1vh;
+}
+
+#player2-token {
+    width: 12.4vh;
+    height: 3.35vh;
+background-size: contain;
+position:absolute;
+display:none;
+}
+
+.titletext {
+  font-family: 'Brush Script MT', cursive;
+    font-size: 1.5vw; /* Adjust the font size */
+  overflow-wrap: break-word;
+    color: #fff; /* White text color */
+    text-shadow: 0 0 20px blue; /* Glowing effect */
+}
+
+.titletext2 {
+  font-family: 'Brush Script MT', cursive;
+    font-size: 1.5vw; /* Adjust the font size */
+  overflow-wrap: break-word;
+    color: #fff; /* White text color */
+    text-shadow: 0 0 20px orange; /* Glowing effect */
+}
+
+    </style>
+</head>
+<body>
+    <div id="carSelection">
+        <div class="image-container2">
+            <img src="carselection.png" alt="Background Image">
+            <h2 id="playerIndicator" class="player-indicator"></h2>
+            <div id="carOptions"></div>
+        </div>
+    </div>
+
+    <div id="mapSelection" style="display:none;">
+        <div class="image-container3">
+            <img src="carselection.png" alt="Background Image">
+            <h3>MAP SELECTION</h3>
+            <div id="mapOptions"></div>
+        </div>
+    </div>
+
+
+<div id = "whole" class = "whole">
+        <div class="player-token" id="player1-token"></div>
+        <div class="player-token" id="player2-token"></div>
+
+<div class="grid" id="grid" style="display: none; margin-right:20vh; "></div>
+<div id="container" class="container">
+    <div id="dice" class="dice">&#9860;</div>
+    <button id="ready" class="ready-button" type="submit">Ready</button>
+    <button id="roll" class="ready-button" type="submit">Roll Dice</button>
+    <div id="turn-indicator" class="turn-indicator">Player 1's Turn</div>
+    
+</div>
+</div>
+    <script>
+
+        const cars = [
+            { color: 'Crimson Rocket', image: 'red.png' }, 
+            { color: 'Racing Verde', image: 'green.png' },
+            { color: 'Golden Flash', image: 'yellow.png' } 
+        ];
+
+const maps = [
+    { name: 'Urban Twilight', image: 'city1.png' },
+    { name: 'Falcon Campus', image: 'adu1.png' },
+    { name: 'Frosty Summit Circuit', image: 'snow1.png' }
+];
+
+
+
+        let currentPicker = 1;
+        let player1Car, player2Car, selectedMap;
+
+        displayCarOptions();
+        nextPlayer(); // Only call nextPlayer for multiplayer mode
+
+function displayCarOptions() {
+    const carOptionsDiv = document.getElementById('carOptions');
+    carOptionsDiv.innerHTML = '';
+    cars.forEach(car => {
+        const carButton = document.createElement('button');
+        const carName = document.createElement('span'); // Create a span element for the car name
+        carName.textContent = car.color; // Set the text content
+        carName.classList.add('titletext'); // Apply the same CSS class as for the map names
+        carButton.appendChild(carName); // Append the car name to the button
+        carButton.style.backgroundImage = `url(${car.image})`;
+        carButton.style.backgroundSize = 'cover';
+        carButton.style.width = '20vh';
+        carButton.style.height = '20vh';
+        carButton.style.borderRadius = '25px';
+        carButton.style.border = 'none';
+        carButton.style.marginBottom = '30px';
+        carButton.onclick = () => selectCar(car);
+        carButton.classList.add('breathing');
+        
+        // Add glowing orange box shadow
+        carButton.style.boxShadow = '0 0 10px 5px rgba(0, 0, 255, 0.5)'; // Adjust values as needed
+        
+        carOptionsDiv.appendChild(carButton);
+    });
+}
+
+
+        function nextPlayer() {
+            document.getElementById('playerIndicator').textContent = 'CAR SELECTION: PLAYER ' + currentPicker ;
+        }
+
+function selectCar(car) {
+    switch (car.color) {
+        case 'Crimson Rocket':
+            car.image = 'redcar.png';
+            break;
+        case 'Racing Verde':
+            car.image = 'greencar.png';
+            break;
+        case 'Golden Flash':
+            car.image = 'yellowcar.png';
+            break;
+        default:
+            break;
+    }
+
+    if (currentPicker === 1) {
+        player1Car = car;
+        document.getElementById('player1-token').style.backgroundImage = `url(${car.image})`;
+        currentPicker = 2;
+    } else {
+        player2Car = car;
+        document.getElementById('player2-token').style.backgroundImage = `url(${car.image})`;
+        document.getElementById('carSelection').style.display = 'none';
+        showMapSelection();
+    }
+    cars.splice(cars.indexOf(car), 1);
+    displayCarOptions();
+    nextPlayer();
+}
+
+
+function showMapSelection() {
+    const mapSelectionDiv = document.getElementById('mapSelection');
+    mapSelectionDiv.style.display = 'block';
+    const mapOptionsDiv = document.getElementById('mapOptions');
+    mapOptionsDiv.innerHTML = ''; 
+    maps.forEach((map, index) => {
+        const mapButton = document.createElement('button');
+        const mapName = document.createElement('span'); // Create a span element for the map name
+        mapName.textContent = map.name; // Set the text content
+        mapName.classList.add('titletext2'); // Apply the CSS class for styling
+        mapButton.appendChild(mapName); // Append the map name to the button
+        mapButton.style.backgroundImage = `url(${map.image})`;
+        mapButton.style.backgroundSize = 'cover'; 
+        mapButton.style.width = '20vh';
+        mapButton.style.height = '20vh';
+        mapButton.style.borderRadius = '25px';
+        mapButton.style.border = 'none'; 
+        mapButton.style.marginBottom = '30px'; 
+        mapButton.onclick = () => selectMap(map);
+        mapButton.classList.add('breathing');
+        
+        // Add glowing blue box shadow
+        mapButton.style.boxShadow = '0 0 10px 5px rgba(255, 165, 0, 0.5)'; // Adjust values as needed
+        
+        mapOptionsDiv.appendChild(mapButton);
+    });
+}
+
+
+
+
+function selectMap(map) {
+    selectedMap = map;
+    switch (map.name) {
+        case 'Urban Twilight':
+            selectedMapImageUrl = 'city.png';
+            document.getElementById('grid').classList.add('glow1-animation');
+            break;
+        case 'Falcon Campus':
+            selectedMapImageUrl = 'adu.png';
+            document.getElementById('grid').classList.add('glow2-animation');
+            break;
+        case 'Frosty Summit Circuit':
+            selectedMapImageUrl = 'snow.png';
+            document.getElementById('grid').classList.add('glow3-animation');
+            break;
+        default:
+            // Default case
+            break;
+    }
+
+    document.getElementById('mapSelection').style.display = 'none';
+    startTutorial();
+}
+
+
+
+
+
+        function startTutorial() {
+            const tutorialDiv = document.createElement('div');
+            tutorialDiv.id = 'tutorialDiv'; 
+            tutorialDiv.innerHTML = `
+                <div style="border-radius: 15px;">
+                    <div style="background-color: #0D212C; padding: 20px; border-radius: 5px; box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);">
+                        <video controls style="width: 700px; height: 300px;">
+                            <source src="tutorial.mp4" type="video/mp4">
+                        </video>
+                    </div><br>
+                    <img src="skip.png" onclick="skipTutorial()" style="cursor: pointer; width: 40vh; height: 13vh; position: absolute; top: 100%; left: 29%; transform: translate(-50%, -50%); animation: breathe 2s infinite alternate;">
+                </div>
+            `;
+            document.body.appendChild(tutorialDiv);
+            tutorialDiv.style.position = 'fixed';
+            tutorialDiv.style.top = '45%';
+            tutorialDiv.style.left = '50%';
+            tutorialDiv.style.transform = 'translate(-50%, -50%)';
+        }
+
+
+function skipTutorial() {
+    const tutorialDiv = document.getElementById('tutorialDiv');
+    if (tutorialDiv) {
+        tutorialDiv.remove();
+    }
+    document.getElementById('grid').style.display = 'grid';
+    document.body.style.backgroundImage = `url(${selectedMapImageUrl})`;
+    document.body.style.backgroundAttachment = 'fixed';
+    document.body.style.backgroundPosition = "center";
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundSize = 'cover';
+
+    // Make player tokens and container visible
+    document.getElementById('player1-token').style.display = 'block';
+    document.getElementById('player2-token').style.display = 'block';
+    document.getElementsByClassName('container')[0].style.display = 'block';
+}
+
+
+
+
+                function createGrid(rows, cols) {
+            let gridHtml = '';
+            const texts = [
+                "1", "2", "3", "4", "5", "6", "7", 
+                "8", "9", "4", "11", "12", "13", "14", "15", 
+                "16","17", "18", "19", "20", "21", "22", "23",
+                "24", "25", "26", "27", "28", "29", "30",
+                "31", "32", "33", "34", "35", "36", "37",
+                "38", "38", "40", "41", "42", "43", "44",
+                "45", "46", "47", "48", "49", "50", "51",
+                "52", "53", "54", "55", "56", "57", "58",
+                "59", "60", "61", "62", "63", "64",
+            ];
+            let textIndex = 0;
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    gridHtml += `<div class="cell">${texts[textIndex]}</div>`;
+                    textIndex = (textIndex + 1) % texts.length;
+                }
+            }
+            document.getElementById('grid').innerHTML = gridHtml;
+        }
+
+        createGrid(8, 8);
+
+
+const readyButtonEl = document.getElementById('ready');
+const rollButtonEl = document.getElementById('roll');
+const dice = document.getElementsByClassName('dice')[0];
+const turnIndicator = document.getElementById('turn-indicator');
+let currentPlayer = 1;
+
+function switchPlayer() {
+    currentPlayer = currentPlayer === 1 ? 2 : 1;
+    turnIndicator.textContent = currentPlayer === 1 ? "Player 1's Turn" : "Player 2's Turn";
+}
+
+readyButtonEl.onclick = function() {
+    readyButtonEl.style.display = 'none';
+    rollButtonEl.style.display = 'block';
+    switchPlayer();
+};
+
+function rolledDice() {
+    let rollResult = Math.floor(Math.random() * 6) + 1; 
+    let diceFace = getDiceFace(rollResult);
+    dice.innerHTML = diceFace;
+}
+
+function getDiceFace(rollResult) {
+    switch (rollResult) {
+        case 1:
+            return "&#9856;"
+            break;
+        case 2:
+            return "&#9857;";
+            break;
+        case 3:
+            return "&#9858;";
+            break;
+        case 4:
+            return "&#9859;";
+            break;
+        case 5:
+            return "&#9860;"
+            break;
+        case 6:
+            return "&#9861;";
+            break;
+    
+        default:
+            return "";
+            break;
+    }
+}
+
+function diceRoll() {
+    rollButtonEl.disabled = true;
+    rollButtonEl.style.backgroundColor = '#ccc';
+    rollButtonEl.style.color = '#999';
+    rollButtonEl.style.opacity = '0.5';
+    rollButtonEl.style.cursor = 'not-allowed';
+
+    dice.classList.add("roll-animation");
+    setTimeout(() => {
+        dice.classList.remove("roll-animation");
+        const rollResult = Math.floor(Math.random() * 6) + 1;
+        const diceFace = getDiceFace(rollResult);
+        dice.innerHTML = diceFace;
+
+        // Move the token
+        const playerToken = document.getElementById(`player${currentPlayer}-token`);
+        let currentPosition = parseInt(playerToken.dataset.position) || 0;
+        currentPosition += rollResult;
+
+        // Ensure the position doesn't exceed the grid limit
+        currentPosition = Math.min(currentPosition, 63);
+
+        // Update token position
+        playerToken.dataset.position = currentPosition;
+        const cells = document.querySelectorAll('.cell');
+        cells[currentPosition - 1].appendChild(playerToken); // Subtract 1 to account for array index starting at 0
+
+        // Switch player
+        switchPlayer();
+
+        // Display alert if needed
+
+        setTimeout(() => {
+            rollButtonEl.disabled = false;
+            rollButtonEl.style.backgroundColor = '#000';
+            rollButtonEl.style.color = '#fff';
+            rollButtonEl.style.opacity = '1';
+            rollButtonEl.style.cursor = 'pointer';
+
+            // Display appropriate buttons based on player turn
+            if (currentPlayer === 1) {
+                readyButtonEl.style.display = 'block';
+                rollButtonEl.style.display = 'none';
+        displayAlert(currentPosition);
+            } else {
+                readyButtonEl.style.display = 'block';
+                rollButtonEl.style.display = 'none';
+        displayAlert(currentPosition);
+            }
+        }, 1000);
+    }, 1000);
+}
+
+
+function displayAlert(cellNumber) {
+    switch (cellNumber) {
+case 1:
+    alert("Go to block 7");
+            alert("An image will appear in the middle of the screen2");
+    // Calculate the new position as the sum of the current position and 6 (since we want to move 6 blocks forward)
+    let newPosition = currentPosition + 6;
+    // Ensure the new position doesn't exceed the grid limit
+    newPosition = Math.min(newPosition, 63);
+    // Update token position
+    playerToken.dataset.position = newPosition;
+    // Move the token to the new position
+    const newCell = document.querySelectorAll('.cell')[newPosition - 1]; // Subtract 1 to account for array index starting at 0
+    newCell.appendChild(playerToken);
+    break;
+        case 2:
+    alert("Go to block 7");
+            alert("An image will appear in the middle of the screen2");
+    // Calculate the new position as the sum of the current position and 6 (since we want to move 6 blocks forward)
+    let newPosition = currentPosition + 6;
+    // Ensure the new position doesn't exceed the grid limit
+    newPosition = Math.min(newPosition, 63);
+    // Update token position
+    playerToken.dataset.position = newPosition;
+    // Move the token to the new position
+    const newCell = document.querySelectorAll('.cell')[newPosition - 1]; // Subtract 1 to account for array index starting at 0
+    newCell.appendChild(playerToken);
+            break;
+        case 3:
+            alert("An image will appear in the middle of the screen3");
+            // Add code to display the image in the middle of the screen
+            break;
+        case 4:
+            alert("An image will appear in the middle of the screen4");
+            break;
+        case 5:
+            alert("An image will appear in the middle of the screen5");
+            // Add code to display the image in the middle of the screen
+            break;
+        case 6:
+            alert("An image will appear in the middle of the screen6");
+            // Add code to display the image in the middle of the s6creen
+
+            break;
+        case 7:
+            alert("An image will appear in the middle of the screen7");
+            // Add code to display the image in the middle of the screen
+            break;
+        case 8:
+            alert("An image will appear in the middle of the screen8");
+            // Add code to display the image in the middle of the screen
+
+            break;
+        case 9:
+            alert("An image will appear in the middle of the screen9");
+            // Add code to display the image in the middle of the screen
+            break;
+        case 10:
+            alert("An image will appear in the middle of the screen10");
+            // Add code to display the image in the middle of the screen
+
+            break;
+        case 11:
+            alert("Hello world");
+            break;
+        // Add more cases for other cells if needed
+        default:
+            // Default action for other cells
+            break;
+    }
+}
+
+rollButtonEl.onclick = diceRoll;
+
+readyButtonEl.onclick = function() {
+    readyButtonEl.style.display = 'none';
+    rollButtonEl.style.display = 'block';
+};
+
+</script>
+
+</body>
+</html>
+
+
+    </script>
+</body>
+</html>

@@ -806,7 +806,6 @@ function displayAlert(cellNumber) {
 
 
             case 2:
-
     const container = document.createElement('div');
     container.style.position = 'absolute';
     container.style.top = '50%';
@@ -819,7 +818,7 @@ function displayAlert(cellNumber) {
     const leftButton = document.createElement('button'); // left button
     leftButton.style.width = '80px'; // Adjust button width as needed
     leftButton.style.height = '50px'; 
-    leftButton.textContent = 'tite';
+    leftButton.textContent = 'Pedal';
     leftButton.style.marginRight = '10px';
     leftButton.style.cursor = 'pointer';
     leftButton.style.borderRadius = '10px'; // Rounded corners
@@ -834,7 +833,7 @@ function displayAlert(cellNumber) {
     const rightButton = document.createElement('button'); // right button
     rightButton.style.width = '80px'; // Adjust button width as needed
     rightButton.style.height = '50px';
-    rightButton.textContent = 'pepe';
+    rightButton.textContent = 'Ignition';
     rightButton.style.marginLeft = '10px';
     rightButton.style.cursor = 'pointer';
     rightButton.style.borderRadius = '10px'; // Rounded corners
@@ -843,14 +842,13 @@ function displayAlert(cellNumber) {
     const correctButton = rightButton;
 
     leftButton.addEventListener('click', function () {
-    if (leftButton !== correctButton) {
-        alert("That is not the right answer, sorry. You will move backward");
-        // Move backward one cell
-        currentPosition -= 1; 
-    }
-    document.body.removeChild(container);
-});
-
+        if (leftButton !== correctButton) {
+            alert("That is not the right answer, sorry. You will move backward");
+            // Move backward one cell
+            currentPosition -= 1; 
+        }
+        document.body.removeChild(container);
+    });
 
     rightButton.addEventListener('click', function () {
         if (rightButton === correctButton) {
@@ -860,41 +858,77 @@ function displayAlert(cellNumber) {
     });
     break;
 
+case 3:
+    break;
+    
+case 4:
+    const container2 = document.createElement('div');
+    container2.style.position = 'absolute';
+    container2.style.top = '50%';
+    container2.style.left = '50%';
+    container2.style.transform = 'translate(-50%, -50%)';
+    container2.style.display = 'flex';
+    container2.style.alignItems = 'center';
+    document.body.appendChild(container2);
 
-            case 3:
-            break;
-        case 4:
-            const image2 = document.createElement('img');
-            image2.src = 'cell4.png'; // question
-            image2.style.width = '600px'; 
-            image2.style.height = '600px'; 
-            image2.style.position = 'absolute'; 
-            image2.style.top = '50%'; 
-            image2.style.left = '50%'; 
-            image2.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image2);
-            image2.addEventListener('click', function() {
-            document.body.removeChild(image2);
-        });
-        break;
+    const leftButton2 = document.createElement('button'); // left button
+    leftButton2.style.width = '80px'; // Adjust button width as needed
+    leftButton2.style.height = '50px'; 
+    leftButton2.textContent = 'Pedal';
+    leftButton2.style.marginRight = '10px';
+    leftButton2.style.cursor = 'pointer';
+    leftButton2.style.borderRadius = '10px'; // Rounded corners
+    container2.appendChild(leftButton2);
 
-            break;
+    const image2 = document.createElement('img'); // image 
+    image2.src = 'cell4.png';
+    image2.style.width = '600px';
+    image2.style.height = '600px';
+    container2.appendChild(image2);
+
+    const rightButton2 = document.createElement('button'); // right button
+    rightButton2.style.width = '80px'; // Adjust button width as needed
+    rightButton2.style.height = '50px';
+    rightButton2.textContent = 'Ignition';
+    rightButton2.style.marginLeft = '10px';
+    rightButton2.style.cursor = 'pointer';
+    rightButton2.style.borderRadius = '10px'; // Rounded corners
+    container2.appendChild(rightButton2);
+
+    const correctButton2 = rightButton2;
+
+    leftButton2.addEventListener('click', function () {
+        if (leftButton2 !== correctButton2) {
+            alert("That is not the right answer, sorry. You will move backward");
+            // Move backward one cell
+            currentPosition -= 1; 
+        }
+        document.body.removeChild(container2);
+    });
+
+    rightButton2.addEventListener('click', function () {
+        if (rightButton2 === correctButton2) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container2);
+    });
+    break;
 
         case 5:
             break;
 
         case 6:
-            const image3 = document.createElement('img');
-        image3.src = 'cell6.png'; // question
-        image3.style.width = '600px'; 
-        image3.style.height = '600px'; 
-        image3.style.position = 'absolute'; 
-        image3.style.top = '50%'; 
-        image3.style.left = '50%'; 
-        image3.style.transform = 'translate(-50%, -50%)'; 
-        document.body.appendChild(image3);
-        image3.addEventListener('click', function() {
-        document.body.removeChild(image3);
+            const image43 = document.createElement('img');
+            image43.src = 'cell6.png'; // question
+            image43.style.width = '600px'; 
+            image43.style.height = '600px'; 
+            image43.style.position = 'absolute'; 
+            image43.style.top = '50%'; 
+            image43.style.left = '50%'; 
+            image43.style.transform = 'translate(-50%, -50%)'; 
+        document.body.appendChild(image43);
+        image43.addEventListener('click', function() {
+        document.body.removeChild(image43);
         });
         
             break;
@@ -903,17 +937,17 @@ function displayAlert(cellNumber) {
             break;
 
             case 8:
-            const image4 = document.createElement('img');
-            image4.src = 'cell8.png'; // proceed block 10
-            image4.style.width = '600px'; 
-            image4.style.height = '600px'; 
-            image4.style.position = 'absolute'; 
-            image4.style.top = '50%'; 
-            image4.style.left = '50%'; 
-            image4.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image4);
-            image4.addEventListener('click', function() {
-            document.body.removeChild(image4);
+            const image57 = document.createElement('img');
+            image57.src = 'cell8.png'; // proceed block 10
+            image57.style.width = '600px'; 
+            image57.style.height = '600px'; 
+            image57.style.position = 'absolute'; 
+            image57.style.top = '50%'; 
+            image57.style.left = '50%'; 
+            image57.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image57);
+            image57.addEventListener('click', function() {
+            document.body.removeChild(image57);
             });
             break;
 
@@ -921,17 +955,17 @@ function displayAlert(cellNumber) {
     
 
             case 9:
-            const image6 = document.createElement('img');
-            image6.src = 'cell9.png'; // another roll
-            image6.style.width = '600px';
-            image6.style.height = '600px';
-            image6.style.position = 'absolute';
-            image6.style.top = '50%';
-            image6.style.left = '50%';
-            image6.style.transform = 'translate(-50%, -50%)';
-            document.body.appendChild(image6);
-            image6.addEventListener('click', function() {
-            document.body.removeChild(image6);
+            const image1221 = document.createElement('img');
+            image1221.src = 'cell9.png'; // another roll
+            image1221.style.width = '600px';
+            image1221.style.height = '600px';
+            image1221.style.position = 'absolute';
+            image1221.style.top = '50%';
+            image1221.style.left = '50%';
+            image1221.style.transform = 'translate(-50%, -50%)';
+            document.body.appendChild(image1221);
+            image1221.addEventListener('click', function() {
+            document.body.removeChild(image1221);
             });
             break;
 
@@ -939,17 +973,17 @@ function displayAlert(cellNumber) {
             break;
 
         case 11:
-            const image7 = document.createElement('img');
-            image7.src = 'cell11.png'; // question
-            image7.style.width = '600px'; 
-            image7.style.height = '600px'; 
-            image7.style.position = 'absolute'; 
-            image7.style.top = '50%'; 
-            image7.style.left = '50%'; 
-            image7.style.transform = 'translate(-50%, -50%)'; 
-        document.body.appendChild(image7);
-        image7.addEventListener('click', function() {
-        document.body.removeChild(image7);
+            const image712 = document.createElement('img');
+            image712.src = 'cell11.png'; // question
+            image712.style.width = '600px'; 
+            image712.style.height = '600px'; 
+            image712.style.position = 'absolute'; 
+            image712.style.top = '50%'; 
+            image712.style.left = '50%'; 
+            image712.style.transform = 'translate(-50%, -50%)'; 
+        document.body.appendChild(image712);
+        image712.addEventListener('click', function() {
+        document.body.removeChild(image712);
         });
             break;
 
@@ -957,17 +991,17 @@ function displayAlert(cellNumber) {
             break;
 
             case 13:
-            const image8 = document.createElement('img');
-            image8.src = 'cell13.png'; // roll
-            image8.style.width = '600px'; 
-            image8.style.height = '600px'; 
-            image8.style.position = 'absolute'; 
-            image8.style.top = '50%'; 
-            image8.style.left = '50%'; 
-            image8.style.transform = 'translate(-50%, -50%)'; 
-        document.body.appendChild(image8);
-        image8.addEventListener('click', function() {
-        document.body.removeChild(image8);
+            const image812 = document.createElement('img');
+            image812.src = 'cell13.png'; // roll
+            image812.style.width = '600px'; 
+            image812.style.height = '600px'; 
+            image812.style.position = 'absolute'; 
+            imagimage812e8.style.top = '50%'; 
+            image812.style.left = '50%'; 
+            image812.style.transform = 'translate(-50%, -50%)'; 
+        document.body.appendChild(image812);
+        image812.addEventListener('click', function() {
+        document.body.removeChild(imaimage812ge8);
         });
 
             break;
@@ -975,19 +1009,60 @@ function displayAlert(cellNumber) {
             break;
 
             case 15:
-            const image9 = document.createElement('img');
-            image9.src = 'cell15.png'; // Replace with your actual image URL
-            image9.style.width = '600px'; 
-            image9.style.height = '600px'; 
-            image9.style.position = 'absolute'; 
-            image9.style.top = '50%'; 
-            image9.style.left = '50%'; 
-            image9.style.transform = 'translate(-50%, -50%)'; 
-        document.body.appendChild(image9);
-        image9.addEventListener('click', function() {
-        document.body.removeChild(image9);
-        });
-            break;
+            const container3 = document.createElement('div');
+    container3.style.position = 'absolute';
+    container3.style.top = '50%';
+    container3.style.left = '50%';
+    container3.style.transform = 'translate(-50%, -50%)';
+    container3.style.display = 'flex';
+    container3.style.alignItems = 'center';
+    document.body.appendChild(container3);
+
+    const leftButton3 = document.createElement('button'); // left button
+    leftButton3.style.width = '80px'; // Adjust button width as needed
+    leftButton3.style.height = '50px'; 
+    leftButton3.textContent = 'Pedal';
+    leftButton3.style.marginRight = '10px';
+    leftButton3.style.cursor = 'pointer';
+    leftButton3.style.borderRadius = '10px'; // Rounded corners
+    container3.appendChild(leftButton3);
+
+    const image3 = document.createElement('img'); // image3 
+    image3.src = 'cell15.png';
+    image3.style.width = '600px';
+    image3.style.height = '600px';
+    container3.appendChild(image3);
+
+    const rightbutton3 = document.createElement('button'); // right button
+    rightbutton3.style.width = '80px'; // Adjust button width as needed
+    rightbutton3.style.height = '50px';
+    rightbutton3.textContent = 'Ignition';
+    rightbutton3.style.marginLeft = '10px';
+    rightbutton3.style.cursor = 'pointer';
+    rightbutton3.style.borderRadius = '10px'; // Rounded corners
+    container3.appendChild(rightbutton3);
+
+    const correctButton3 = rightbutton3;
+
+    leftButton3.addEventListener('click', function () {
+    if (leftButton3 !== correctButton3) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container3);
+});
+
+
+    rightbutton3.addEventListener('click', function () {
+        if (rightbutton3 === correctButton3) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container3);
+    });
+            break;;
+
+
             case 16:
             break;
 
@@ -995,35 +1070,74 @@ function displayAlert(cellNumber) {
 
             break;
             case 18:
-            const image5 = document.createElement('img');
-            image5.src = 'cell18.png'; // Replace with your actual image URL
-            image5.style.width = '600px'; 
-            image5.style.height = '600px'; 
-            image5.style.position = 'absolute'; 
-            image5.style.top = '50%'; 
-            image5.style.left = '50%'; 
-            image5.style.transform = 'translate(-50%, -50%)'; 
-        document.body.appendChild(image5);
-        image5.addEventListener('click', function() {
-        document.body.removeChild(image5);
-        });
+            const container4 = document.createElement('div');
+    container4.style.position = 'absolute';
+    container4.style.top = '50%';
+    container4.style.left = '50%';
+    container4.style.transform = 'translate(-50%, -50%)';
+    container4.style.display = 'flex';
+    container4.style.alignItems = 'center';
+    document.body.appendChild(container4);
+
+    const leftButton4 = document.createElement('button'); // left button
+    leftButton4.style.width = '80px'; // Adjust button width as needed
+    leftButton4.style.height = '50px'; 
+    leftButton4.textContent = 'Pedal';
+    leftButton4.style.marginRight = '10px';
+    leftButton4.style.cursor = 'pointer';
+    leftButton4.style.borderRadius = '10px'; // Rounded corners
+    container4.appendChild(leftButton4);
+
+    const image4 = document.createElement('img'); // image4 
+    image4.src = 'cell18.png';
+    image4.style.width = '600px';
+    image4.style.height = '600px';
+    container4.appendChild(image4);
+
+    const rightButton4 = document.createElement('button'); // right button
+    rightButton4.style.width = '80px'; // Adjust button width as needed
+    rightButton4.style.height = '50px';
+    rightButton4.textContent = 'Ignition';
+    rightButton4.style.marginLeft = '10px';
+    rightButton4.style.cursor = 'pointer';
+    rightButton4.style.borderRadius = '10px'; // Rounded corners
+    container4.appendChild(rightButton4);
+
+    const correctButton4 = rightButton4;
+
+    leftButton4.addEventListener('click', function () {
+    if (leftButton4 !== correctButton4) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container4);
+});
+
+
+    rightButton4.addEventListener('click', function () {
+        if (rightButton4 === correctButton4) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container4);
+    });
             break;
 
             case 19:
             break;
 
             case 20:
-            const image10 = document.createElement('img');
-            image10.src = 'cell20.png'; // proceed block 23
-            image10.style.width = '600px'; 
-            image10.style.height = '600px'; 
-            image10.style.position = 'absolute'; 
-            image10.style.top = '50%'; 
-            image10.style.left = '50%'; 
-            image10.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image10);
-            image10.addEventListener('click', function() {
-            document.body.removeChild(image10);
+            const image1043 = document.createElement('img');
+            image1043.src = 'cell20.png'; // proceed block 23
+            image1043.style.width = '600px'; 
+            image1043.style.height = '600px'; 
+            image1043.style.position = 'absolute'; 
+            image1043.style.top = '50%'; 
+            image1043.style.left = '50%'; 
+            image1043.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image1043);
+            image1043.addEventListener('click', function() {
+            document.body.removeChild(image1043);
             });
             break;
 
@@ -1031,50 +1145,128 @@ function displayAlert(cellNumber) {
             break;
 
             case 22:
-            const image11 = document.createElement('img');
-            image11.src = 'cell22.png'; // question
-            image11.style.width = '600px'; 
-            image11.style.height = '600px'; 
-            image11.style.position = 'absolute'; 
-            image11.style.top = '50%'; 
-            image11.style.left = '50%'; 
-            image11.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image11);
-            image11.addEventListener('click', function() {
-            document.body.removeChild(image11);
-            });
+            const container5 = document.createElement('div');
+    container5.style.position = 'absolute';
+    container5.style.top = '50%';
+    container5.style.left = '50%';
+    container5.style.transform = 'translate(-50%, -50%)';
+    container5.style.display = 'flex';
+    container5.style.alignItems = 'center';
+    document.body.appendChild(container5);
+
+    const leftButton5 = document.createElement('button'); // left button
+    leftButton5.style.width = '80px'; // Adjust button width as needed
+    leftButton5.style.height = '50px'; 
+    leftButton5.textContent = 'Pedal';
+    leftButton5.style.marginRight = '10px';
+    leftButton5.style.cursor = 'pointer';
+    leftButton5.style.borderRadius = '10px'; // Rounded corners
+    container5.appendChild(leftButton5);
+
+    const image5 = document.createElement('img'); // image5 
+    image5.src = 'cell22.png';
+    image5.style.width = '600px';
+    image5.style.height = '600px';
+    container5.appendChild(image5);
+
+    const rightButton5 = document.createElement('button'); // right button
+    rightButton5.style.width = '80px'; // Adjust button width as needed
+    rightButton5.style.height = '50px';
+    rightButton5.textContent = 'Ignition';
+    rightButton5.style.marginLeft = '10px';
+    rightButton5.style.cursor = 'pointer';
+    rightButton5.style.borderRadius = '10px'; // Rounded corners
+    container5.appendChild(rightButton5);
+
+    const correctButton5 = rightButton5;
+
+    leftButton5.addEventListener('click', function () {
+    if (leftButton5 !== correctButton5) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container5);
+});
+
+
+    rightButton5.addEventListener('click', function () {
+        if (rightButton5 === correctButton5) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container5);
+    });
             break;
 
             case 23:
             break;
 
             case 24:
-            const image12 = document.createElement('img');
-            image12.src = 'cell24.png'; // question
-            image12.style.width = '600px'; 
-            image12.style.height = '600px'; 
-            image12.style.position = 'absolute'; 
-            image12.style.top = '50%'; 
-            image12.style.left = '50%'; 
-            image12.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image12);
-            image12.addEventListener('click', function() {
-            document.body.removeChild(image12);
-            });
+            const container6 = document.createElement('div');
+    container6.style.position = 'absolute';
+    container6.style.top = '50%';
+    container6.style.left = '50%';
+    container6.style.transform = 'translate(-50%, -50%)';
+    container6.style.display = 'flex';
+    container6.style.alignItems = 'center';
+    document.body.appendChild(container6);
+
+    const leftButton6 = document.createElement('button'); // left button
+    leftButton6.style.width = '80px'; // Adjust button width as needed
+    leftButton6.style.height = '50px'; 
+    leftButton6.textContent = 'Pedal';
+    leftButton6.style.marginRight = '10px';
+    leftButton6.style.cursor = 'pointer';
+    leftButton6.style.borderRadius = '10px'; // Rounded corners
+    container6.appendChild(leftButton6);
+
+    const image6 = document.createElement('img'); // image6 
+    image6.src = 'cell24.png';
+    image6.style.width = '600px';
+    image6.style.height = '600px';
+    container6.appendChild(image6);
+
+    const rightButton6 = document.createElement('button'); // right button
+    rightButton6.style.width = '80px'; // Adjust button width as needed
+    rightButton6.style.height = '50px';
+    rightButton6.textContent = 'Ignition';
+    rightButton6.style.marginLeft = '10px';
+    rightButton6.style.cursor = 'pointer';
+    rightButton6.style.borderRadius = '10px'; // Rounded corners
+    container6.appendChild(rightButton6);
+
+    const correctButton6 = rightButton6;
+
+    leftButton6.addEventListener('click', function () {
+    if (leftButton6 !== correctButton6) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container6);
+});
+
+
+    rightButton6.addEventListener('click', function () {
+        if (rightButton6 === correctButton6) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container6);
+    });
             break;
 
             case 25:
-            const image13 = document.createElement('img');
-            image13.src = 'cell25.png'; // another roll
-            image13.style.width = '600px'; 
-            image13.style.height = '600px'; 
-            image13.style.position = 'absolute'; 
-            image13.style.top = '50%'; 
-            image13.style.left = '50%'; 
-            image13.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image13);
-            image13.addEventListener('click', function() {
-            document.body.removeChild(image13);
+            const image132 = document.createElement('img');
+            image132.src = 'cell25.png'; // another roll
+            image132.style.width = '600px'; 
+            image132.style.height = '600px'; 
+            image132.style.position = 'absolute'; 
+            image132.style.top = '50%'; 
+            image132.style.left = '50%'; 
+            image132.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image132);
+            image132.addEventListener('click', function() {
+            document.body.removeChild(image132);
             });            
             break;
 
@@ -1088,17 +1280,17 @@ function displayAlert(cellNumber) {
             break;
 
             case 29:
-            const image14 = document.createElement('img');
-            image14.src = 'cell29.png'; // another roll
-            image14.style.width = '600px'; 
-            image14.style.height = '600px'; 
-            image14.style.position = 'absolute'; 
-            image14.style.top = '50%'; 
-            image14.style.left = '50%'; 
-            image14.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image14);
-            image14.addEventListener('click', function() {
-            document.body.removeChild(image14);
+            const image142 = document.createElement('img');
+            image142.src = 'cell29.png'; // another roll
+            image142.style.width = '600px'; 
+            image142.style.height = '600px'; 
+            image142.style.position = 'absolute'; 
+            image142.style.top = '50%'; 
+            image142.style.left = '50%'; 
+            image142.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image142);
+            image142.addEventListener('click', function() {
+            document.body.removeChild(image142);
             });            
             break;
 
@@ -1106,18 +1298,57 @@ function displayAlert(cellNumber) {
             break;
 
             case 31:
-            const image15 = document.createElement('img');
-            image15.src = 'cell31.png'; // another roll
-            image15.style.width = '600px'; 
-            image15.style.height = '600px'; 
-            image15.style.position = 'absolute'; 
-            image15.style.top = '50%'; 
-            image15.style.left = '50%'; 
-            image15.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image15);
-            image15.addEventListener('click', function() {
-            document.body.removeChild(image15);
-            });            
+            const container7 = document.createElement('div');
+    container7.style.position = 'absolute';
+    container7.style.top = '50%';
+    container7.style.left = '50%';
+    container7.style.transform = 'translate(-50%, -50%)';
+    container7.style.display = 'flex';
+    container7.style.alignItems = 'center';
+    document.body.appendChild(container7);
+
+    const leftButton7 = document.createElement('button'); // left button
+    leftButton7.style.width = '80px'; // Adjust button width as needed
+    leftButton7.style.height = '50px'; 
+    leftButton7.textContent = 'Pedal';
+    leftButton7.style.marginRight = '10px';
+    leftButton7.style.cursor = 'pointer';
+    leftButton7.style.borderRadius = '10px'; // Rounded corners
+    container7.appendChild(leftButton7);
+
+    const image7 = document.createElement('img'); // image7 
+    image7.src = 'cell31.png';
+    image7.style.width = '600px';
+    image7.style.height = '600px';
+    container7.appendChild(image7);
+
+    const rightButton7 = document.createElement('button'); // right button
+    rightButton7.style.width = '80px'; // Adjust button width as needed
+    rightButton7.style.height = '50px';
+    rightButton7.textContent = 'Ignition';
+    rightButton7.style.marginLeft = '10px';
+    rightButton7.style.cursor = 'pointer';
+    rightButton7.style.borderRadius = '10px'; // Rounded corners
+    container7.appendChild(rightButton7);
+
+    const correctButton7 = rightButton7;
+
+    leftButton7.addEventListener('click', function () {
+    if (leftButton7 !== correctButton7) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container7);
+});
+
+
+    rightButton7.addEventListener('click', function () {
+        if (rightButton7 === correctButton7) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container7);
+    });       
             break;
 
             case 32:
@@ -1127,35 +1358,74 @@ function displayAlert(cellNumber) {
             break;
 
             case 34:
-            const image16 = document.createElement('img');
-            image16.src = 'cell34.png'; // question
-            image16.style.width = '600px'; 
-            image16.style.height = '600px'; 
-            image16.style.position = 'absolute'; 
-            image16.style.top = '50%'; 
-            image16.style.left = '50%'; 
-            image16.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image16);
-            image16.addEventListener('click', function() {
-            document.body.removeChild(image16);
-            });            
+            const container8 = document.createElement('div');
+    container8.style.position = 'absolute';
+    container8.style.top = '50%';
+    container8.style.left = '50%';
+    container8.style.transform = 'translate(-50%, -50%)';
+    container8.style.display = 'flex';
+    container8.style.alignItems = 'center';
+    document.body.appendChild(container8);
+
+    const leftButton8 = document.createElement('button'); // left button
+    leftButton8.style.width = '80px'; // Adjust button width as needed
+    leftButton8.style.height = '50px'; 
+    leftButton8.textContent = 'Pedal';
+    leftButton8.style.marginRight = '10px';
+    leftButton8.style.cursor = 'pointer';
+    leftButton8.style.borderRadius = '10px'; // Rounded corners
+    container8.appendChild(leftButton8);
+
+    const image8 = document.createElement('img'); // image8 
+    image8.src = 'cell34.png';
+    image8.style.width = '600px';
+    image8.style.height = '600px';
+    container8.appendChild(image8);
+
+    const rightButton8 = document.createElement('button'); // right button
+    rightButton8.style.width = '80px'; // Adjust button width as needed
+    rightButton8.style.height = '50px';
+    rightButton8.textContent = 'Ignition';
+    rightButton8.style.marginLeft = '10px';
+    rightButton8.style.cursor = 'pointer';
+    rightButton8.style.borderRadius = '10px'; // Rounded corners
+    container8.appendChild(rightButton8);
+
+    const correctButton8 = rightButton8;
+
+    leftButton8.addEventListener('click', function () {
+    if (leftButton8 !== correctButton8) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container8);
+});
+
+
+    rightButton8.addEventListener('click', function () {
+        if (rightButton8 === correctButton8) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container8);
+    });  
             break;
 
             case 35:
             break;
 
             case 36:
-            const image17 = document.createElement('img');
-            image17.src = 'cell36.png'; // another roll
-            image17.style.width = '600px'; 
-            image17.style.height = '600px'; 
-            image17.style.position = 'absolute'; 
-            image17.style.top = '50%'; 
-            image17.style.left = '50%'; 
-            image17.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image17);
-            image17.addEventListener('click', function() {
-            document.body.removeChild(image17);
+            const image1731 = document.createElement('img');
+            image1731.src = 'cell36.png'; // another roll
+            image1731.style.width = '600px'; 
+            image1731.style.height = '600px'; 
+            image1731.style.position = 'absolute'; 
+            image1731.style.top = '50%'; 
+            image1731.style.left = '50%'; 
+            image1731.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image1731);
+            image1731.addEventListener('click', function() {
+            document.body.removeChild(image1731);
             });            
             break;
 
@@ -1182,36 +1452,114 @@ function displayAlert(cellNumber) {
             break;
 
             case 40:
-            const image19 = document.createElement('img');
-            image19.src = 'cell40.png'; // another roll
-            image19.style.width = '600px'; 
-            image19.style.height = '600px'; 
-            image19.style.position = 'absolute'; 
-            image19.style.top = '50%'; 
-            image19.style.left = '50%'; 
-            image19.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image19);
-            image19.addEventListener('click', function() {
-            document.body.removeChild(image19);
-            });            
+            const container9 = document.createElement('div');
+    container9.style.position = 'absolute';
+    container9.style.top = '50%';
+    container9.style.left = '50%';
+    container9.style.transform = 'translate(-50%, -50%)';
+    container9.style.display = 'flex';
+    container9.style.alignItems = 'center';
+    document.body.appendChild(container9);
+
+    const leftButton9 = document.createElement('button'); // left button
+    leftButton9.style.width = '80px'; // Adjust button width as needed
+    leftButton9.style.height = '50px'; 
+    leftButton9.textContent = 'Pedal';
+    leftButton9.style.marginRight = '10px';
+    leftButton9.style.cursor = 'pointer';
+    leftButton9.style.borderRadius = '10px'; // Rounded corners
+    container9.appendChild(leftButton9);
+
+    const image9 = document.createElement('img'); // image9 
+    image9.src = 'cell40.png';
+    image9.style.width = '600px';
+    image9.style.height = '600px';
+    container9.appendChild(image9);
+
+    const rightButton9 = document.createElement('button'); // right button
+    rightButton9.style.width = '80px'; // Adjust button width as needed
+    rightButton9.style.height = '50px';
+    rightButton9.textContent = 'Ignition';
+    rightButton9.style.marginLeft = '10px';
+    rightButton9.style.cursor = 'pointer';
+    rightButton9.style.borderRadius = '10px'; // Rounded corners
+    container9.appendChild(rightButton9);
+
+    const correctButton9 = rightButton9;
+
+    leftButton9.addEventListener('click', function () {
+    if (leftButton9 !== correctButton9) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container9);
+});
+
+
+    rightButton9.addEventListener('click', function () {
+        if (rightButton9 === correctButton9) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container9);
+    });        
             break;
 
             case 41:
             break;
 
             case 42:
-            const image21 = document.createElement('img');
-            image21.src = 'cell42.png'; // another roll
-            image21.style.width = '600px'; 
-            image21.style.height = '600px'; 
-            image21.style.position = 'absolute'; 
-            image21.style.top = '50%'; 
-            image21.style.left = '50%'; 
-            image21.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image21);
-            image21.addEventListener('click', function() {
-            document.body.removeChild(image21);
-            });            
+            const container10 = document.createElement('div');
+    container10.style.position = 'absolute';
+    container10.style.top = '50%';
+    container10.style.left = '50%';
+    container10.style.transform = 'translate(-50%, -50%)';
+    container10.style.display = 'flex';
+    container10.style.alignItems = 'center';
+    document.body.appendChild(container10);
+
+    const leftButton10 = document.createElement('button'); // left button
+    leftButton10.style.width = '80px'; // Adjust button width as needed
+    leftButton10.style.height = '50px'; 
+    leftButton10.textContent = 'Pedal';
+    leftButton10.style.marginRight = '10px';
+    leftButton10.style.cursor = 'pointer';
+    leftButton10.style.borderRadius = '10px'; // Rounded corners
+    container10.appendChild(leftButton10);
+
+    const image10 = document.createElement('img'); // image10 
+    image10.src = 'cell42.png';
+    image10.style.width = '600px';
+    image10.style.height = '600px';
+    container10.appendChild(image10);
+
+    const rightButton10 = document.createElement('button'); // right button
+    rightButton10.style.width = '80px'; // Adjust button width as needed
+    rightButton10.style.height = '50px';
+    rightButton10.textContent = 'Ignition';
+    rightButton10.style.marginLeft = '10px';
+    rightButton10.style.cursor = 'pointer';
+    rightButton10.style.borderRadius = '10px'; // Rounded corners
+    container10.appendChild(rightButton10);
+
+    const correctButton10 = rightButton10;
+
+    leftButton10.addEventListener('click', function () {
+    if (leftButton10 !== correctButton10) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container10);
+});
+
+
+    rightButton10.addEventListener('click', function () {
+        if (rightButton10 === correctButton10) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container10);
+    });
             break;
 
             case 43:
@@ -1254,36 +1602,114 @@ function displayAlert(cellNumber) {
             break;
 
             case 48:
-            const image24 = document.createElement('img');
-            image24.src = 'cell48.png'; // another roll
-            image24.style.width = '600px'; 
-            image24.style.height = '600px'; 
-            image24.style.position = 'absolute'; 
-            image24.style.top = '50%'; 
-            image24.style.left = '50%'; 
-            image24.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image24);
-            image24.addEventListener('click', function() {
-            document.body.removeChild(image24);
-            });            
+            const container11 = document.createElement('div');
+    container11.style.position = 'absolute';
+    container11.style.top = '50%';
+    container11.style.left = '50%';
+    container11.style.transform = 'translate(-50%, -50%)';
+    container11.style.display = 'flex';
+    container11.style.alignItems = 'center';
+    document.body.appendChild(container11);
+
+    const leftButton11 = document.createElement('button'); // left button
+    leftButton11.style.width = '80px'; // Adjust button width as needed
+    leftButton11.style.height = '50px'; 
+    leftButton11.textContent = 'Pedal';
+    leftButton11.style.marginRight = '10px';
+    leftButton11.style.cursor = 'pointer';
+    leftButton11.style.borderRadius = '10px'; // Rounded corners
+    container11.appendChild(leftButton11);
+
+    const image11 = document.createElement('img'); // image11 
+    image11.src = 'cell48.png';
+    image11.style.width = '600px';
+    image11.style.height = '600px';
+    container11.appendChild(image11);
+
+    const rightButton11 = document.createElement('button'); // right button
+    rightButton11.style.width = '80px'; // Adjust button width as needed
+    rightButton11.style.height = '50px';
+    rightButton11.textContent = 'Ignition';
+    rightButton11.style.marginLeft = '10px';
+    rightButton11.style.cursor = 'pointer';
+    rightButton11.style.borderRadius = '10px'; // Rounded corners
+    container11.appendChild(rightButton11);
+
+    const correctButton11 = rightButton11;
+
+    leftButton11.addEventListener('click', function () {
+    if (leftButton11 !== correctButton11) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container11);
+});
+
+
+    rightButton11.addEventListener('click', function () {
+        if (rightButton11 === correctButton11) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container11);
+    });  
             break;
 
             case 49:
             break;
 
             case 50:
-            const image25 = document.createElement('img');
-            image25.src = 'cell50.png'; // another roll
-            image25.style.width = '600px'; 
-            image25.style.height = '600px'; 
-            image25.style.position = 'absolute'; 
-            image25.style.top = '50%'; 
-            image25.style.left = '50%'; 
-            image25.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image25);
-            image25.addEventListener('click', function() {
-            document.body.removeChild(image25);
-            });            
+            const container12 = document.createElement('div');
+    container12.style.position = 'absolute';
+    container12.style.top = '50%';
+    container12.style.left = '50%';
+    container12.style.transform = 'translate(-50%, -50%)';
+    container12.style.display = 'flex';
+    container12.style.alignItems = 'center';
+    document.body.appendChild(container12);
+
+    const leftButton12 = document.createElement('button'); // left button
+    leftButton12.style.width = '80px'; // Adjust button width as needed
+    leftButton12.style.height = '50px'; 
+    leftButton12.textContent = 'Pedal';
+    leftButton12.style.marginRight = '10px';
+    leftButton12.style.cursor = 'pointer';
+    leftButton12.style.borderRadius = '10px'; // Rounded corners
+    container12.appendChild(leftButton12);
+
+    const image12 = document.createElement('img'); // image12 
+    image12.src = 'cell50.png';
+    image12.style.width = '600px';
+    image12.style.height = '600px';
+    container12.appendChild(image12);
+
+    const rightButton12 = document.createElement('button'); // right button
+    rightButton12.style.width = '80px'; // Adjust button width as needed
+    rightButton12.style.height = '50px';
+    rightButton12.textContent = 'Ignition';
+    rightButton12.style.marginLeft = '10px';
+    rightButton12.style.cursor = 'pointer';
+    rightButton12.style.borderRadius = '10px'; // Rounded corners
+    container12.appendChild(rightButton12);
+
+    const correctButton12 = rightButton12;
+
+    leftButton12.addEventListener('click', function () {
+    if (leftButton12 !== correctButton12) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container12);
+});
+
+
+    rightButton12.addEventListener('click', function () {
+        if (rightButton12 === correctButton12) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container12);
+    });   
             break;
 
             case 51:
@@ -1308,36 +1734,114 @@ function displayAlert(cellNumber) {
             break;
 
             case 54:
-            const image27 = document.createElement('img');
-            image27.src = 'cell54.png'; // another roll
-            image27.style.width = '600px'; 
-            image27.style.height = '600px'; 
-            image27.style.position = 'absolute'; 
-            image27.style.top = '50%'; 
-            image27.style.left = '50%'; 
-            image27.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image27);
-            image27.addEventListener('click', function() {
-            document.body.removeChild(image27);
-            });            
+            const container13 = document.createElement('div');
+    container13.style.position = 'absolute';
+    container13.style.top = '50%';
+    container13.style.left = '50%';
+    container13.style.transform = 'translate(-50%, -50%)';
+    container13.style.display = 'flex';
+    container13.style.alignItems = 'center';
+    document.body.appendChild(container13);
+
+    const leftButton13 = document.createElement('button'); // left button
+    leftButton13.style.width = '80px'; // Adjust button width as needed
+    leftButton13.style.height = '50px'; 
+    leftButton13.textContent = 'Pedal';
+    leftButton13.style.marginRight = '10px';
+    leftButton13.style.cursor = 'pointer';
+    leftButton13.style.borderRadius = '10px'; // Rounded corners
+    container13.appendChild(leftButton13);
+
+    const image13 = document.createElement('img'); // image13 
+    image13.src = 'cell54.png';
+    image13.style.width = '600px';
+    image13.style.height = '600px';
+    container13.appendChild(image13);
+
+    const rightButton13 = document.createElement('button'); // right button
+    rightButton13.style.width = '80px'; // Adjust button width as needed
+    rightButton13.style.height = '50px';
+    rightButton13.textContent = 'Ignition';
+    rightButton13.style.marginLeft = '10px';
+    rightButton13.style.cursor = 'pointer';
+    rightButton13.style.borderRadius = '10px'; // Rounded corners
+    container13.appendChild(rightButton13);
+
+    const correctButton13 = rightButton13;
+
+    leftButton13.addEventListener('click', function () {
+    if (leftButton13 !== correctButton13) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container13);
+});
+
+
+    rightButton13.addEventListener('click', function () {
+        if (rightButton13 === correctButton13) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container13);
+    });      
             break;
 
             case 55:
             break;
 
             case 56:
-            const image28 = document.createElement('img');
-            image28.src = 'cell56.png'; // another roll
-            image28.style.width = '600px'; 
-            image28.style.height = '600px'; 
-            image28.style.position = 'absolute'; 
-            image28.style.top = '50%'; 
-            image28.style.left = '50%'; 
-            image28.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image28);
-            image28.addEventListener('click', function() {
-            document.body.removeChild(image28);
-            });            
+            const container14 = document.createElement('div');
+    container14.style.position = 'absolute';
+    container14.style.top = '50%';
+    container14.style.left = '50%';
+    container14.style.transform = 'translate(-50%, -50%)';
+    container14.style.display = 'flex';
+    container14.style.alignItems = 'center';
+    document.body.appendChild(container14);
+
+    const leftButton14 = document.createElement('button'); // left button
+    leftButton14.style.width = '80px'; // Adjust button width as needed
+    leftButton14.style.height = '50px'; 
+    leftButton14.textContent = 'Pedal';
+    leftButton14.style.marginRight = '10px';
+    leftButton14.style.cursor = 'pointer';
+    leftButton14.style.borderRadius = '10px'; // Rounded corners
+    container14.appendChild(leftButton14);
+
+    const image14 = document.createElement('img'); // image14 
+    image14.src = 'cell56.png';
+    image14.style.width = '600px';
+    image14.style.height = '600px';
+    container14.appendChild(image14);
+
+    const rightButton14 = document.createElement('button'); // right button
+    rightButton14.style.width = '80px'; // Adjust button width as needed
+    rightButton14.style.height = '50px';
+    rightButton14.textContent = 'Ignition';
+    rightButton14.style.marginLeft = '10px';
+    rightButton14.style.cursor = 'pointer';
+    rightButton14.style.borderRadius = '10px'; // Rounded corners
+    container14.appendChild(rightButton14);
+
+    const correctButton14 = rightButton14;
+
+    leftButton14.addEventListener('click', function () {
+    if (leftButton14 !== correctButton14) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container14);
+});
+
+
+    rightButton14.addEventListener('click', function () {
+        if (rightButton14 === correctButton2) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container14);
+    });    
             break;
 
             case 57:
@@ -1362,18 +1866,57 @@ function displayAlert(cellNumber) {
             break;
 
             case 60:
-            const image30 = document.createElement('img');
-            image30.src = 'cell60.png'; // another roll
-            image30.style.width = '600px'; 
-            image30.style.height = '600px'; 
-            image30.style.position = 'absolute'; 
-            image30.style.top = '50%'; 
-            image30.style.left = '50%'; 
-            image30.style.transform = 'translate(-50%, -50%)'; 
-            document.body.appendChild(image30);
-            image30.addEventListener('click', function() {
-            document.body.removeChild(image30);
-            });            
+            const container17 = document.createElement('div');
+    container17.style.position = 'absolute';
+    container17.style.top = '50%';
+    container17.style.left = '50%';
+    container17.style.transform = 'translate(-50%, -50%)';
+    container17.style.display = 'flex';
+    container17.style.alignItems = 'center';
+    document.body.appendChild(container17);
+
+    const leftButton17 = document.createElement('button'); // left button
+    leftButton17.style.width = '80px'; // Adjust button width as needed
+    leftButton17.style.height = '50px'; 
+    leftButton17.textContent = 'Pedal';
+    leftButton17.style.marginRight = '10px';
+    leftButton17.style.cursor = 'pointer';
+    leftButton17.style.borderRadius = '10px'; // Rounded corners
+    container17.appendChild(leftButton17);
+
+    const image17 = document.createElement('img'); // image17 
+    image17.src = 'cell60.png';
+    image17.style.width = '600px';
+    image17.style.height = '600px';
+    container17.appendChild(image17);
+
+    const rightButton17 = document.createElement('button'); // right button
+    rightButton17.style.width = '80px'; // Adjust button width as needed
+    rightButton17.style.height = '50px';
+    rightButton17.textContent = 'Ignition';
+    rightButton17.style.marginLeft = '10px';
+    rightButton17.style.cursor = 'pointer';
+    rightButton17.style.borderRadius = '10px'; // Rounded corners
+    container17.appendChild(rightButton17);
+
+    const correctButton17 = rightButton17;
+
+    leftButton17.addEventListener('click', function () {
+    if (leftButton17 !== correctButton17) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container17);
+});
+
+
+    rightButton17.addEventListener('click', function () {
+        if (rightButton17 === correctButton17) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container17);
+    });   
             break;
 
             case 61:

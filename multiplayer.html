@@ -709,7 +709,6 @@ function diceRoll() {
 
 
         if (currentPosition === 8) {
-            alert("You've landed on cell 8! Moving to cell 10.");
             currentPosition = 10;   
             playerToken.dataset.position = currentPosition;
             cells[currentPosition - 1].appendChild(playerToken);
@@ -718,7 +717,6 @@ function diceRoll() {
         
 
         if (currentPosition === 20) {
-            alert("You've landed on cell 20! Moving to cell 23.");
             currentPosition = 23;   
             playerToken.dataset.position = currentPosition;
             cells[currentPosition - 1].appendChild(playerToken);
@@ -726,7 +724,6 @@ function diceRoll() {
         }
 
         if (currentPosition === 29) {
-            alert("You've landed on cell 29! Moving to cell 32  .");
             currentPosition = 32;   
             playerToken.dataset.position = currentPosition;
             cells[currentPosition - 1].appendChild(playerToken);
@@ -735,7 +732,6 @@ function diceRoll() {
 
         // another roll
         if (currentPosition === 9 || currentPosition === 13 || currentPosition === 25 || currentPosition === 36) {
-            alert(`You've landed on cell ${currentPosition}! Roll the dice again.`);
             setTimeout(() => {
                 rollButtonEl.disabled = false;
                 rollButtonEl.style.backgroundColor = '#000';
@@ -772,7 +768,6 @@ function diceRoll() {
 
 
             case 2:
-    alert("An image will appear in the middle of the screen 2");
 
     const container = document.createElement('div');
     container.style.position = 'absolute';
@@ -831,7 +826,6 @@ function diceRoll() {
             case 3:
             break;
         case 4:
-            alert("An image will appear in the middle of the screen 4");
             const image2 = document.createElement('img');
             image2.src = 'cell4.png'; // question
             image2.style.width = '600px'; 
@@ -852,7 +846,6 @@ function diceRoll() {
             break;
 
         case 6:
-            alert("An image will appear in the middle of the screen 6");
             const image3 = document.createElement('img');
         image3.src = 'cell6.png'; // question
         image3.style.width = '600px'; 
@@ -872,7 +865,6 @@ function diceRoll() {
             break;
 
             case 8:
-            alert("An image will appear in the middle of the screen 8");
             const image4 = document.createElement('img');
             image4.src = 'cell8.png'; // proceed block 10
             image4.style.width = '600px'; 
@@ -891,7 +883,6 @@ function diceRoll() {
     
 
             case 9:
-            alert("An image will appear in the middle of the screen 9");
             const image6 = document.createElement('img');
             image6.src = 'cell9.png'; // another roll
             image6.style.width = '600px';
@@ -910,7 +901,6 @@ function diceRoll() {
             break;
 
         case 11:
-            alert("An image will appear in the middle of the screen 11");
             const image7 = document.createElement('img');
             image7.src = 'cell11.png'; // question
             image7.style.width = '600px'; 
@@ -929,7 +919,6 @@ function diceRoll() {
             break;
 
             case 13:
-            alert("An image will appear in the middle of the screen 13");
             const image8 = document.createElement('img');
             image8.src = 'cell13.png'; // roll
             image8.style.width = '600px'; 
@@ -948,7 +937,6 @@ function diceRoll() {
             break;
 
             case 15:
-            alert("An image will appear in the middle of the screen 15");
             const image9 = document.createElement('img');
             image9.src = 'cell15.png'; // Replace with your actual image URL
             image9.style.width = '600px'; 
@@ -969,7 +957,6 @@ function diceRoll() {
 
             break;
             case 18:
-            alert("An image will appear in the middle of the screen 18");
             const image5 = document.createElement('img');
             image5.src = 'cell18.png'; // Replace with your actual image URL
             image5.style.width = '600px'; 
@@ -988,7 +975,6 @@ function diceRoll() {
             break;
 
             case 20:
-            alert("An image will appear in the middle of the screen8");
             const image10 = document.createElement('img');
             image10.src = 'cell20.png'; // proceed block 23
             image10.style.width = '600px'; 
@@ -1007,7 +993,6 @@ function diceRoll() {
             break;
 
             case 22:
-            alert("An image will appear in the middle of the screen10");
             const image11 = document.createElement('img');
             image11.src = 'cell22.png'; // question
             image11.style.width = '600px'; 
@@ -1026,7 +1011,6 @@ function diceRoll() {
             break;
 
             case 24:
-            alert("An image will appear in the middle of the screen10");
             const image12 = document.createElement('img');
             image12.src = 'cell24.png'; // question
             image12.style.width = '600px'; 
@@ -1042,7 +1026,6 @@ function diceRoll() {
             break;
 
             case 25:
-            alert("An image will appear in the middle of the screen10");
             const image13 = document.createElement('img');
             image13.src = 'cell25.png'; // another roll
             image13.style.width = '600px'; 
@@ -1067,7 +1050,6 @@ function diceRoll() {
             break;
 
             case 29:
-            alert("An image will appear in the middle of the screen10");
             const image14 = document.createElement('img');
             image14.src = 'cell29.png'; // another roll
             image14.style.width = '600px'; 
@@ -1086,7 +1068,6 @@ function diceRoll() {
             break;
 
             case 31:
-            alert("An image will appear in the middle of the screen10");
             const image15 = document.createElement('img');
             image15.src = 'cell31.png'; // another roll
             image15.style.width = '600px'; 
@@ -1108,7 +1089,6 @@ function diceRoll() {
             break;
 
             case 34:
-            alert("An image will appear in the middle of the screen10");
             const image16 = document.createElement('img');
             image16.src = 'cell34.png'; // question
             image16.style.width = '600px'; 
@@ -1127,7 +1107,6 @@ function diceRoll() {
             break;
 
             case 36:
-            alert("An image will appear in the middle of the screen10");
             const image17 = document.createElement('img');
             image17.src = 'cell36.png'; // another roll
             image17.style.width = '600px'; 

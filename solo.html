@@ -676,6 +676,8 @@ function getDiceFace(rollResult) {
     }
 }
 
+let isAITurn = false; // Flag to track if it's AI's turn
+
 function diceRoll() {
     rollButtonEl.disabled = true;
     rollButtonEl.style.backgroundColor = '#ccc';
@@ -703,46 +705,706 @@ function diceRoll() {
         const cells = document.querySelectorAll('.cell');
         cells[currentPosition - 1].appendChild(playerToken); // Subtract 1 to account for array index starting at 0
 
-        // Switch player
-        switchPlayer();
+        displayAlert(currentPosition);
 
-setTimeout(() => {
-    // Display appropriate buttons based on player turn
-    if (currentPlayer === 1) {
-        // Player 1's turn
-        readyButtonEl.innerText = "Ready";
-        rollButtonEl.innerText = "Roll Dice";
-        readyButtonEl.style.display = 'block';
-        rollButtonEl.style.display = 'none';
-        rollButtonEl.style.backgroundColor = '#000';
-        rollButtonEl.style.color = '#fff';
-        rollButtonEl.style.opacity = '1';
-        readyButtonEl.style.backgroundColor = '#000';
-        readyButtonEl.style.color = '#fff';
-        readyButtonEl.style.opacity = '1';
-        rollButtonEl.style.cursor = 'pointer';
-        readyButtonEl.style.cursor = 'pointer';
-        rollButtonEl.disabled = false;
-        readyButtonEl.disabled = false;
-    } else {
-        // AI's turn
-        readyButtonEl.style.display = 'block';
-        rollButtonEl.style.display = 'none';
-        rollButtonEl.disabled = true;
-        readyButtonEl.disabled = true;
-        rollButtonEl.innerText = "AI Rolling...";
-        readyButtonEl.innerText = "AI Rolling...";
-        readyButtonEl.style.backgroundColor = '#000';
-        readyButtonEl.style.color = '#fff';
-        readyButtonEl.style.opacity = '0.5';
-        readyButtonEl.style.cursor = 'not-allowed';
-        rollButtonEl.style.backgroundColor = '#000';
-        rollButtonEl.style.color = '#fff';
-        rollButtonEl.style.opacity = '0.5';
-        rollButtonEl.style.cursor = 'not-allowed';
-    }
-}, 1000);
+        // Check for special positions and move accordingly
+        if (currentPosition === 8) {
+            currentPosition = 10;   
+            playerToken.dataset.position = currentPosition;
+            cells[currentPosition - 1].appendChild(playerToken);
+            displayAlert(currentPosition);
+        }
+        
+        if (currentPosition === 20) {
+            currentPosition = 23;   
+            playerToken.dataset.position = currentPosition;
+            cells[currentPosition - 1].appendChild(playerToken);
+            displayAlert(currentPosition);
+        }
+
+        if (currentPosition === 29) {
+            currentPosition = 32;   
+            playerToken.dataset.position = currentPosition;
+            cells[currentPosition - 1].appendChild(playerToken);
+            displayAlert(currentPosition);
+        }
+
+        if (currentPosition === 29) {
+            currentPosition = 32;   
+            playerToken.dataset.position = currentPosition;
+            cells[currentPosition - 1].appendChild(playerToken);
+            displayAlert(currentPosition);
+        }
+
+        // Handle another roll condition
+        if (currentPosition === 9 || currentPosition === 13 || currentPosition === 25 || currentPosition === 36) {
+            setTimeout(() => {
+                rollButtonEl.disabled = false;
+                rollButtonEl.style.backgroundColor = '#000';
+                rollButtonEl.style.color = '#fff';
+                rollButtonEl.style.opacity = '1';
+                rollButtonEl.style.cursor = 'pointer';
+            }, 1000);
+        } else {
+            // Switch player and update button display
+            switchPlayer();
+            setTimeout(() => {
+                if (currentPlayer === 1) {
+                    readyButtonEl.style.display = 'block';
+                    rollButtonEl.style.display = 'none';
+                } else {
+                    readyButtonEl.style.display = 'block';
+                    rollButtonEl.style.display = 'none';
+                }       
+
+                // Update button styles based on player turn
+                if (currentPlayer === 1) {
+                    readyButtonEl.innerText = "Ready";
+                    rollButtonEl.innerText = "Roll Dice";
+                    readyButtonEl.style.backgroundColor = '#000';
+                    readyButtonEl.style.color = '#fff';
+                    readyButtonEl.style.opacity = '1';
+                    readyButtonEl.style.cursor = 'pointer';
+                    rollButtonEl.style.backgroundColor = '#000';
+                    rollButtonEl.style.color = '#fff';
+                    rollButtonEl.style.opacity = '1';
+                    rollButtonEl.style.cursor = 'pointer';
+                    rollButtonEl.disabled = false;
+                    readyButtonEl.disabled = false;
+                } else {
+                    readyButtonEl.style.backgroundColor = '#000';
+                    readyButtonEl.style.color = '#fff';
+                    readyButtonEl.style.opacity = '0.5';
+                    readyButtonEl.style.cursor = 'not-allowed';
+                    rollButtonEl.style.backgroundColor = '#000';
+                    rollButtonEl.style.color = '#fff';
+                    rollButtonEl.style.opacity = '0.5';
+                    rollButtonEl.style.cursor = 'not-allowed';
+                    rollButtonEl.disabled = true;
+                    readyButtonEl.disabled = true;
+                    rollButtonEl.innerText = "AI Rolling...";
+                    readyButtonEl.innerText = "AI Rolling...";
+                    // Hide the image when AI is rolling
+                    document.querySelectorAll('img').forEach(img => img.style.display = 'none');
+                }
+            }, 1000);
+        }
     }, 1000);
+}
+
+rollButtonEl.onclick = diceRoll;
+
+readyButtonEl.onclick = function() {
+    readyButtonEl.style.display = 'none';
+    rollButtonEl.style.display = 'block';
+};
+
+function displayAlert(cellNumber) {
+    switch (cellNumber) {
+        case 1:
+            break;
+
+
+            case 2:
+
+    const container = document.createElement('div');
+    container.style.position = 'absolute';
+    container.style.top = '50%';
+    container.style.left = '50%';
+    container.style.transform = 'translate(-50%, -50%)';
+    container.style.display = 'flex';
+    container.style.alignItems = 'center';
+    document.body.appendChild(container);
+
+    const leftButton = document.createElement('button'); // left button
+    leftButton.style.width = '80px'; // Adjust button width as needed
+    leftButton.style.height = '50px'; 
+    leftButton.textContent = 'tite';
+    leftButton.style.marginRight = '10px';
+    leftButton.style.cursor = 'pointer';
+    leftButton.style.borderRadius = '10px'; // Rounded corners
+    container.appendChild(leftButton);
+
+    const image = document.createElement('img'); // image 
+    image.src = 'cell2.png';
+    image.style.width = '600px';
+    image.style.height = '600px';
+    container.appendChild(image);
+
+    const rightButton = document.createElement('button'); // right button
+    rightButton.style.width = '80px'; // Adjust button width as needed
+    rightButton.style.height = '50px';
+    rightButton.textContent = 'pepe';
+    rightButton.style.marginLeft = '10px';
+    rightButton.style.cursor = 'pointer';
+    rightButton.style.borderRadius = '10px'; // Rounded corners
+    container.appendChild(rightButton);
+
+    const correctButton = rightButton;
+
+    leftButton.addEventListener('click', function () {
+    if (leftButton !== correctButton) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container);
+});
+
+
+    rightButton.addEventListener('click', function () {
+        if (rightButton === correctButton) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container);
+    });
+    break;
+
+
+            case 3:
+            break;
+        case 4:
+            const image2 = document.createElement('img');
+            image2.src = 'cell4.png'; // question
+            image2.style.width = '600px'; 
+            image2.style.height = '600px'; 
+            image2.style.position = 'absolute'; 
+            image2.style.top = '50%'; 
+            image2.style.left = '50%'; 
+            image2.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image2);
+            image2.addEventListener('click', function() {
+            document.body.removeChild(image2);
+        });
+        break;
+
+            break;
+
+        case 5:
+            break;
+
+        case 6:
+            const image3 = document.createElement('img');
+        image3.src = 'cell6.png'; // question
+        image3.style.width = '600px'; 
+        image3.style.height = '600px'; 
+        image3.style.position = 'absolute'; 
+        image3.style.top = '50%'; 
+        image3.style.left = '50%'; 
+        image3.style.transform = 'translate(-50%, -50%)'; 
+        document.body.appendChild(image3);
+        image3.addEventListener('click', function() {
+        document.body.removeChild(image3);
+        });
+        
+            break;
+
+        case 7:
+            break;
+
+            case 8:
+            const image4 = document.createElement('img');
+            image4.src = 'cell8.png'; // proceed block 10
+            image4.style.width = '600px'; 
+            image4.style.height = '600px'; 
+            image4.style.position = 'absolute'; 
+            image4.style.top = '50%'; 
+            image4.style.left = '50%'; 
+            image4.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image4);
+            image4.addEventListener('click', function() {
+            document.body.removeChild(image4);
+            });
+            break;
+
+
+    
+
+            case 9:
+            const image6 = document.createElement('img');
+            image6.src = 'cell9.png'; // another roll
+            image6.style.width = '600px';
+            image6.style.height = '600px';
+            image6.style.position = 'absolute';
+            image6.style.top = '50%';
+            image6.style.left = '50%';
+            image6.style.transform = 'translate(-50%, -50%)';
+            document.body.appendChild(image6);
+            image6.addEventListener('click', function() {
+            document.body.removeChild(image6);
+            });
+            break;
+
+        case 10:
+            break;
+
+        case 11:
+            const image7 = document.createElement('img');
+            image7.src = 'cell11.png'; // question
+            image7.style.width = '600px'; 
+            image7.style.height = '600px'; 
+            image7.style.position = 'absolute'; 
+            image7.style.top = '50%'; 
+            image7.style.left = '50%'; 
+            image7.style.transform = 'translate(-50%, -50%)'; 
+        document.body.appendChild(image7);
+        image7.addEventListener('click', function() {
+        document.body.removeChild(image7);
+        });
+            break;
+
+            case 12:
+            break;
+
+            case 13:
+            const image8 = document.createElement('img');
+            image8.src = 'cell13.png'; // roll
+            image8.style.width = '600px'; 
+            image8.style.height = '600px'; 
+            image8.style.position = 'absolute'; 
+            image8.style.top = '50%'; 
+            image8.style.left = '50%'; 
+            image8.style.transform = 'translate(-50%, -50%)'; 
+        document.body.appendChild(image8);
+        image8.addEventListener('click', function() {
+        document.body.removeChild(image8);
+        });
+
+            break;
+            case 14:
+            break;
+
+            case 15:
+            const image9 = document.createElement('img');
+            image9.src = 'cell15.png'; // Replace with your actual image URL
+            image9.style.width = '600px'; 
+            image9.style.height = '600px'; 
+            image9.style.position = 'absolute'; 
+            image9.style.top = '50%'; 
+            image9.style.left = '50%'; 
+            image9.style.transform = 'translate(-50%, -50%)'; 
+        document.body.appendChild(image9);
+        image9.addEventListener('click', function() {
+        document.body.removeChild(image9);
+        });
+            break;
+            case 16:
+            break;
+
+            case 17:            
+
+            break;
+            case 18:
+            const image5 = document.createElement('img');
+            image5.src = 'cell18.png'; // Replace with your actual image URL
+            image5.style.width = '600px'; 
+            image5.style.height = '600px'; 
+            image5.style.position = 'absolute'; 
+            image5.style.top = '50%'; 
+            image5.style.left = '50%'; 
+            image5.style.transform = 'translate(-50%, -50%)'; 
+        document.body.appendChild(image5);
+        image5.addEventListener('click', function() {
+        document.body.removeChild(image5);
+        });
+            break;
+
+            case 19:
+            break;
+
+            case 20:
+            const image10 = document.createElement('img');
+            image10.src = 'cell20.png'; // proceed block 23
+            image10.style.width = '600px'; 
+            image10.style.height = '600px'; 
+            image10.style.position = 'absolute'; 
+            image10.style.top = '50%'; 
+            image10.style.left = '50%'; 
+            image10.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image10);
+            image10.addEventListener('click', function() {
+            document.body.removeChild(image10);
+            });
+            break;
+
+            case 21:
+            break;
+
+            case 22:
+            const image11 = document.createElement('img');
+            image11.src = 'cell22.png'; // question
+            image11.style.width = '600px'; 
+            image11.style.height = '600px'; 
+            image11.style.position = 'absolute'; 
+            image11.style.top = '50%'; 
+            image11.style.left = '50%'; 
+            image11.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image11);
+            image11.addEventListener('click', function() {
+            document.body.removeChild(image11);
+            });
+            break;
+
+            case 23:
+            break;
+
+            case 24:
+            const image12 = document.createElement('img');
+            image12.src = 'cell24.png'; // question
+            image12.style.width = '600px'; 
+            image12.style.height = '600px'; 
+            image12.style.position = 'absolute'; 
+            image12.style.top = '50%'; 
+            image12.style.left = '50%'; 
+            image12.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image12);
+            image12.addEventListener('click', function() {
+            document.body.removeChild(image12);
+            });
+            break;
+
+            case 25:
+            const image13 = document.createElement('img');
+            image13.src = 'cell25.png'; // another roll
+            image13.style.width = '600px'; 
+            image13.style.height = '600px'; 
+            image13.style.position = 'absolute'; 
+            image13.style.top = '50%'; 
+            image13.style.left = '50%'; 
+            image13.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image13);
+            image13.addEventListener('click', function() {
+            document.body.removeChild(image13);
+            });            
+            break;
+
+            case 26:
+            break;
+
+            case 27:
+            break;
+
+            case 28:
+            break;
+
+            case 29:
+            const image14 = document.createElement('img');
+            image14.src = 'cell29.png'; // another roll
+            image14.style.width = '600px'; 
+            image14.style.height = '600px'; 
+            image14.style.position = 'absolute'; 
+            image14.style.top = '50%'; 
+            image14.style.left = '50%'; 
+            image14.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image14);
+            image14.addEventListener('click', function() {
+            document.body.removeChild(image14);
+            });            
+            break;
+
+            case 30:
+            break;
+
+            case 31:
+            const image15 = document.createElement('img');
+            image15.src = 'cell31.png'; // another roll
+            image15.style.width = '600px'; 
+            image15.style.height = '600px'; 
+            image15.style.position = 'absolute'; 
+            image15.style.top = '50%'; 
+            image15.style.left = '50%'; 
+            image15.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image15);
+            image15.addEventListener('click', function() {
+            document.body.removeChild(image15);
+            });            
+            break;
+
+            case 32:
+            break;
+
+            case 33:
+            break;
+
+            case 34:
+            const image16 = document.createElement('img');
+            image16.src = 'cell34.png'; // question
+            image16.style.width = '600px'; 
+            image16.style.height = '600px'; 
+            image16.style.position = 'absolute'; 
+            image16.style.top = '50%'; 
+            image16.style.left = '50%'; 
+            image16.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image16);
+            image16.addEventListener('click', function() {
+            document.body.removeChild(image16);
+            });            
+            break;
+
+            case 35:
+            break;
+
+            case 36:
+            const image17 = document.createElement('img');
+            image17.src = 'cell36.png'; // another roll
+            image17.style.width = '600px'; 
+            image17.style.height = '600px'; 
+            image17.style.position = 'absolute'; 
+            image17.style.top = '50%'; 
+            image17.style.left = '50%'; 
+            image17.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image17);
+            image17.addEventListener('click', function() {
+            document.body.removeChild(image17);
+            });            
+            break;
+
+            case 37:
+            break;
+
+            case 38:
+            const image18 = document.createElement('img');
+            image18.src = 'cell38.png'; // another roll
+            image18.style.width = '600px'; 
+            image18.style.height = '600px'; 
+            image18.style.position = 'absolute'; 
+            image18.style.top = '50%'; 
+            image18.style.left = '50%'; 
+            image18.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image18);
+            image18.addEventListener('click', function() {
+            document.body.removeChild(image18);
+            });            
+
+            break;
+
+            case 39:
+            break;
+
+            case 40:
+            const image19 = document.createElement('img');
+            image19.src = 'cell40.png'; // another roll
+            image19.style.width = '600px'; 
+            image19.style.height = '600px'; 
+            image19.style.position = 'absolute'; 
+            image19.style.top = '50%'; 
+            image19.style.left = '50%'; 
+            image19.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image19);
+            image19.addEventListener('click', function() {
+            document.body.removeChild(image19);
+            });            
+            break;
+
+            case 41:
+            break;
+
+            case 42:
+            const image21 = document.createElement('img');
+            image21.src = 'cell42.png'; // another roll
+            image21.style.width = '600px'; 
+            image21.style.height = '600px'; 
+            image21.style.position = 'absolute'; 
+            image21.style.top = '50%'; 
+            image21.style.left = '50%'; 
+            image21.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image21);
+            image21.addEventListener('click', function() {
+            document.body.removeChild(image21);
+            });            
+            break;
+
+            case 43:
+            break;
+
+            case 44:
+            const image22 = document.createElement('img');
+            image22.src = 'cell44.png'; // another roll
+            image22.style.width = '600px'; 
+            image22.style.height = '600px'; 
+            image22.style.position = 'absolute'; 
+            image22.style.top = '50%'; 
+            image22.style.left = '50%'; 
+            image22.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image22);
+            image22.addEventListener('click', function() {
+            document.body.removeChild(image22);
+            });            
+            break;
+
+            case 45:
+            break;
+
+            case 46:
+            const image23 = document.createElement('img');
+            image23.src = 'cell46.png'; // another roll
+            image23.style.width = '600px'; 
+            image23.style.height = '600px'; 
+            image23.style.position = 'absolute'; 
+            image23.style.top = '50%'; 
+            image23.style.left = '50%'; 
+            image23.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image23);
+            image23.addEventListener('click', function() {
+            document.body.removeChild(image23);
+            });            
+            break;
+
+            case 47:
+            break;
+
+            case 48:
+            const image24 = document.createElement('img');
+            image24.src = 'cell48.png'; // another roll
+            image24.style.width = '600px'; 
+            image24.style.height = '600px'; 
+            image24.style.position = 'absolute'; 
+            image24.style.top = '50%'; 
+            image24.style.left = '50%'; 
+            image24.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image24);
+            image24.addEventListener('click', function() {
+            document.body.removeChild(image24);
+            });            
+            break;
+
+            case 49:
+            break;
+
+            case 50:
+            const image25 = document.createElement('img');
+            image25.src = 'cell50.png'; // another roll
+            image25.style.width = '600px'; 
+            image25.style.height = '600px'; 
+            image25.style.position = 'absolute'; 
+            image25.style.top = '50%'; 
+            image25.style.left = '50%'; 
+            image25.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image25);
+            image25.addEventListener('click', function() {
+            document.body.removeChild(image25);
+            });            
+            break;
+
+            case 51:
+            break;
+
+            case 52:
+            const image26 = document.createElement('img');
+            image26.src = 'cell52.png'; // another roll
+            image26.style.width = '600px'; 
+            image26.style.height = '600px'; 
+            image26.style.position = 'absolute'; 
+            image26.style.top = '50%'; 
+            image26.style.left = '50%'; 
+            image26.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image26);
+            image26.addEventListener('click', function() {
+            document.body.removeChild(image26);
+            });            
+            break;
+
+            case 53:
+            break;
+
+            case 54:
+            const image27 = document.createElement('img');
+            image27.src = 'cell54.png'; // another roll
+            image27.style.width = '600px'; 
+            image27.style.height = '600px'; 
+            image27.style.position = 'absolute'; 
+            image27.style.top = '50%'; 
+            image27.style.left = '50%'; 
+            image27.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image27);
+            image27.addEventListener('click', function() {
+            document.body.removeChild(image27);
+            });            
+            break;
+
+            case 55:
+            break;
+
+            case 56:
+            const image28 = document.createElement('img');
+            image28.src = 'cell56.png'; // another roll
+            image28.style.width = '600px'; 
+            image28.style.height = '600px'; 
+            image28.style.position = 'absolute'; 
+            image28.style.top = '50%'; 
+            image28.style.left = '50%'; 
+            image28.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image28);
+            image28.addEventListener('click', function() {
+            document.body.removeChild(image28);
+            });            
+            break;
+
+            case 57:
+            break;
+
+            case 58:
+            const image29 = document.createElement('img');
+            image29.src = 'cell58.png'; // another roll
+            image29.style.width = '600px'; 
+            image29.style.height = '600px'; 
+            image29.style.position = 'absolute'; 
+            image29.style.top = '50%'; 
+            image29.style.left = '50%'; 
+            image29.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image29);
+            image29.addEventListener('click', function() {
+            document.body.removeChild(imagimage29e20);
+            });            
+            break;
+
+            case 59:
+            break;
+
+            case 60:
+            const image30 = document.createElement('img');
+            image30.src = 'cell60.png'; // another roll
+            image30.style.width = '600px'; 
+            image30.style.height = '600px'; 
+            image30.style.position = 'absolute'; 
+            image30.style.top = '50%'; 
+            image30.style.left = '50%'; 
+            image30.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image30);
+            image30.addEventListener('click', function() {
+            document.body.removeChild(image30);
+            });            
+            break;
+
+            case 61:
+            break;
+
+            case 62:
+            break;
+
+            case 63:
+            break;
+
+            case 64:
+            const image31 = document.createElement('img');
+            image31.src = 'cell64.png'; // another roll
+            image31.style.width = '600px'; 
+            image31.style.height = '600px'; 
+            image31.style.position = 'absolute'; 
+            image31.style.top = '50%'; 
+            image31.style.left = '50%'; 
+            image31.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image31);
+            image31.addEventListener('click', function() {
+            document.body.removeChild(image31);
+            });            
+            break;
+
+        // Add more cases for other cells if needed
+        default:
+            // Default action for other cells
+            break;
+    }
 }
 
 rollButtonEl.onclick = diceRoll;

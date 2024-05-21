@@ -702,13 +702,18 @@ function diceRoll() {
         const cells = document.querySelectorAll('.cell');
         cells[currentPosition - 1].appendChild(playerToken); // Subtract 1 to account for array index starting at 0
 
-        // Check for special positions and move accordingly
+        displayAlert(currentPosition);
+
+
+
+
         if (currentPosition === 8) {
             currentPosition = 10;   
             playerToken.dataset.position = currentPosition;
             cells[currentPosition - 1].appendChild(playerToken);
             displayAlert(currentPosition);
         }
+        
 
         if (currentPosition === 20) {
             currentPosition = 23;   
@@ -724,7 +729,7 @@ function diceRoll() {
             displayAlert(currentPosition);
         }
 
-        // Handle another roll condition
+        // another roll
         if (currentPosition === 9 || currentPosition === 13 || currentPosition === 25 || currentPosition === 36) {
             setTimeout(() => {
                 rollButtonEl.disabled = false;
@@ -736,49 +741,24 @@ function diceRoll() {
         } else {
             switchPlayer();
             setTimeout(() => {
+                rollButtonEl.disabled = false;
+                rollButtonEl.style.backgroundColor = '#000';
+                rollButtonEl.style.color = '#fff';
+                rollButtonEl.style.opacity = '1';
+                rollButtonEl.style.cursor = 'pointer';
+
                 // Display appropriate buttons based on player turn
                 if (currentPlayer === 1) {
-                    readyButtonEl.innerText = "Ready";
-                    rollButtonEl.innerText = "Roll Dice";
                     readyButtonEl.style.display = 'block';
                     rollButtonEl.style.display = 'none';
-                    rollButtonEl.style.backgroundColor = '#000';
-                    rollButtonEl.style.color = '#fff';
-                    rollButtonEl.style.opacity = '1';
-                    readyButtonEl.style.backgroundColor = '#000';
-                    readyButtonEl.style.color = '#fff';
-                    readyButtonEl.style.opacity = '1';
-                    rollButtonEl.style.cursor = 'pointer';
-                    readyButtonEl.style.cursor = 'pointer';
-                    rollButtonEl.disabled = false;
-                    readyButtonEl.disabled = false;
                 } else {
                     readyButtonEl.style.display = 'block';
                     rollButtonEl.style.display = 'none';
-                    rollButtonEl.disabled = true;
-                    readyButtonEl.disabled = true;
-                    rollButtonEl.innerText = "AI Rolling...";
-                    readyButtonEl.innerText = "AI Rolling...";
-                    readyButtonEl.style.backgroundColor = '#000';
-                    readyButtonEl.style.color = '#fff';
-                    readyButtonEl.style.opacity = '0.5';
-                    readyButtonEl.style.cursor = 'not-allowed';
-                    rollButtonEl.style.backgroundColor = '#000';
-                    rollButtonEl.style.color = '#fff';
-                    rollButtonEl.style.opacity = '0.5';
-                    rollButtonEl.style.cursor = 'not-allowed';
                 }
             }, 1000);
         }
     }, 1000);
 }
-
-rollButtonEl.onclick = diceRoll;
-
-readyButtonEl.onclick = function() {
-    readyButtonEl.style.display = 'none';
-    rollButtonEl.style.display = 'block';
-};
 
             function displayAlert(cellNumber) {
     switch (cellNumber) {

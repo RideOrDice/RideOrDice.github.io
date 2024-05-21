@@ -1124,6 +1124,19 @@ function diceRoll() {
             break;
 
             case 38:
+            const image18 = document.createElement('img');
+            image18.src = 'cell38.png'; // another roll
+            image18.style.width = '600px'; 
+            image18.style.height = '600px'; 
+            image18.style.position = 'absolute'; 
+            image18.style.top = '50%'; 
+            image18.style.left = '50%'; 
+            image18.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image18);
+            image18.addEventListener('click', function() {
+            document.body.removeChild(image18);
+            });            
+
             break;
 
             case 39:

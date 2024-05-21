@@ -839,57 +839,19 @@ case 3:
     break;
     
 case 4:
-    const container2 = document.createElement('div');
-    container2.style.position = 'absolute';
-    container2.style.top = '50%';
-    container2.style.left = '50%';
-    container2.style.transform = 'translate(-50%, -50%)';
-    container2.style.display = 'flex';
-    container2.style.alignItems = 'center';
-    document.body.appendChild(container2);
-
-    const leftButton2 = document.createElement('button'); // left button
-    leftButton2.style.width = '80px'; // Adjust button width as needed
-    leftButton2.style.height = '50px'; 
-    leftButton2.textContent = 'Pedal';
-    leftButton2.style.marginRight = '10px';
-    leftButton2.style.cursor = 'pointer';
-    leftButton2.style.borderRadius = '10px'; // Rounded corners
-    container2.appendChild(leftButton2);
-
-    const image2 = document.createElement('img'); // image 
-    image2.src = 'cell4.png';
-    image2.style.width = '600px';
-    image2.style.height = '600px';
-    container2.appendChild(image2);
-
-    const rightButton2 = document.createElement('button'); // right button
-    rightButton2.style.width = '80px'; // Adjust button width as needed
-    rightButton2.style.height = '50px';
-    rightButton2.textContent = 'Ignition';
-    rightButton2.style.marginLeft = '10px';
-    rightButton2.style.cursor = 'pointer';
-    rightButton2.style.borderRadius = '10px'; // Rounded corners
-    container2.appendChild(rightButton2);
-
-    const correctButton2 = rightButton2;
-
-    leftButton2.addEventListener('click', function () {
-        if (leftButton2 !== correctButton2) {
-            alert("That is not the right answer, sorry. You will move backward");
-            // Move backward one cell
-            currentPosition -= 1; 
-        }
-        document.body.removeChild(container2);
-    });
-
-    rightButton2.addEventListener('click', function () {
-        if (rightButton2 === correctButton2) {
-            alert("You got the right answer! You will remain in your cell.");
-        }
-        document.body.removeChild(container2);
-    });
-    break;
+const image43 = document.createElement('img');
+image43.src = 'cell8.png'; // proceed block 10
+image43.style.width = '600px'; 
+image43.style.height = '600px'; 
+image43.style.position = 'absolute'; 
+image43.style.top = '50%'; 
+image43.style.left = '50%'; 
+image43.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image43);
+            image43.addEventListener('click', function() {
+            document.body.removeChild(image43);
+            });
+            break;
 
         case 5:
             break;

@@ -125,6 +125,7 @@ width: 100vw;
     z-index: 1;
     text-shadow: 0 0 10px blue; 
     letter-spacing: 5px;
+
 }
 
 .image-container2 #carOptions,.image-container3 #mapOptions {
@@ -602,7 +603,7 @@ function skipTutorial() {
             let gridHtml = '';
             const texts = [
                 "1", "2", "3", "4", "5", "6", "7", 
-                "8", "9", "4", "11", "12", "13", "14", "15", 
+                "8", "9", "10", "11", "12", "13", "14", "15", 
                 "16","17", "18", "19", "20", "21", "22", "23",
                 "24", "25", "26", "27", "28", "29", "30",
                 "31", "32", "33", "34", "35", "36", "37",
@@ -701,80 +702,468 @@ function diceRoll() {
         const cells = document.querySelectorAll('.cell');
         cells[currentPosition - 1].appendChild(playerToken); // Subtract 1 to account for array index starting at 0
 
-        // Switch player
-        switchPlayer();
-
-        // Display alert if needed
-
-        setTimeout(() => {
-            rollButtonEl.disabled = false;
-            rollButtonEl.style.backgroundColor = '#000';
-            rollButtonEl.style.color = '#fff';
-            rollButtonEl.style.opacity = '1';
-            rollButtonEl.style.cursor = 'pointer';
-
-            // Display appropriate buttons based on player turn
-            if (currentPlayer === 1) {
-                readyButtonEl.style.display = 'block';
-                rollButtonEl.style.display = 'none';
         displayAlert(currentPosition);
-            } else {
-                readyButtonEl.style.display = 'block';
-                rollButtonEl.style.display = 'none';
-        displayAlert(currentPosition);
-            }
-        }, 1000);
+
+
+
+
+
+        if (currentPosition === 8) {
+            alert("You've landed on cell 8! Moving to cell 10.");
+            currentPosition = 10;   
+            playerToken.dataset.position = currentPosition;
+            cells[currentPosition - 1].appendChild(playerToken);
+            displayAlert(currentPosition);
+        }
+        
+
+        if (currentPosition === 20) {
+            alert("You've landed on cell 20! Moving to cell 23.");
+            currentPosition = 23;   
+            playerToken.dataset.position = currentPosition;
+            cells[currentPosition - 1].appendChild(playerToken);
+            displayAlert(currentPosition);
+        }
+
+        if (currentPosition === 29) {
+            alert("You've landed on cell 29! Moving to cell 32  .");
+            currentPosition = 32;   
+            playerToken.dataset.position = currentPosition;
+            cells[currentPosition - 1].appendChild(playerToken);
+            displayAlert(currentPosition);
+        }
+
+        // another roll
+        if (currentPosition === 9 || currentPosition === 13 || currentPosition === 25 || currentPosition === 36) {
+            alert(`You've landed on cell ${currentPosition}! Roll the dice again.`);
+            setTimeout(() => {
+                rollButtonEl.disabled = false;
+                rollButtonEl.style.backgroundColor = '#000';
+                rollButtonEl.style.color = '#fff';
+                rollButtonEl.style.opacity = '1';
+                rollButtonEl.style.cursor = 'pointer';
+            }, 1000);
+        } else {
+            switchPlayer();
+            setTimeout(() => {
+                rollButtonEl.disabled = false;
+                rollButtonEl.style.backgroundColor = '#000';
+                rollButtonEl.style.color = '#fff';
+                rollButtonEl.style.opacity = '1';
+                rollButtonEl.style.cursor = 'pointer';
+
+                // Display appropriate buttons based on player turn
+                if (currentPlayer === 1) {
+                    readyButtonEl.style.display = 'block';
+                    rollButtonEl.style.display = 'none';
+                } else {
+                    readyButtonEl.style.display = 'block';
+                    rollButtonEl.style.display = 'none';
+                }
+            }, 1000);
+        }
     }, 1000);
 }
 
-
-function displayAlert(cellNumber) {
+            function displayAlert(cellNumber) {
     switch (cellNumber) {
         case 1:
-            alert("An image will appear in the middle of the screen1");
-            // Add code to display the image in the middle of the screen
             break;
-        case 2:
-            alert("An image will appear in the middle of the screen2");
-            // Add code to display the image in the middle of the screen
 
-            break;
-        case 3:
-            alert("An image will appear in the middle of the screen3");
-            // Add code to display the image in the middle of the screen
+
+            case 2:
+    alert("An image will appear in the middle of the screen 2");
+
+    const container = document.createElement('div');
+    container.style.position = 'absolute';
+    container.style.top = '50%';
+    container.style.left = '50%';
+    container.style.transform = 'translate(-50%, -50%)';
+    container.style.display = 'flex';
+    container.style.alignItems = 'center';
+    document.body.appendChild(container);
+
+    const leftButton = document.createElement('button'); // left button
+    leftButton.style.width = '80px'; // Adjust button width as needed
+    leftButton.style.height = '50px'; 
+    leftButton.textContent = 'tite';
+    leftButton.style.marginRight = '10px';
+    leftButton.style.cursor = 'pointer';
+    leftButton.style.borderRadius = '10px'; // Rounded corners
+    container.appendChild(leftButton);
+
+    const image = document.createElement('img'); // image 
+    image.src = 'cell2.png';
+    image.style.width = '600px';
+    image.style.height = '600px';
+    container.appendChild(image);
+
+    const rightButton = document.createElement('button'); // right button
+    rightButton.style.width = '80px'; // Adjust button width as needed
+    rightButton.style.height = '50px';
+    rightButton.textContent = 'pepe';
+    rightButton.style.marginLeft = '10px';
+    rightButton.style.cursor = 'pointer';
+    rightButton.style.borderRadius = '10px'; // Rounded corners
+    container.appendChild(rightButton);
+
+    const correctButton = rightButton;
+
+    leftButton.addEventListener('click', function () {
+    if (leftButton !== correctButton) {
+        alert("That is not the right answer, sorry. You will move backward");
+        // Move backward one cell
+        currentPosition -= 1; 
+    }
+    document.body.removeChild(container);
+});
+
+
+    rightButton.addEventListener('click', function () {
+        if (rightButton === correctButton) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container);
+    });
+    break;
+
+
+            case 3:
             break;
         case 4:
-            alert("An image will appear in the middle of the screen4");
+            alert("An image will appear in the middle of the screen 4");
+            const image2 = document.createElement('img');
+            image2.src = 'cell4.png'; // question
+            image2.style.width = '600px'; 
+            image2.style.height = '600px'; 
+            image2.style.position = 'absolute'; 
+            image2.style.top = '50%'; 
+            image2.style.left = '50%'; 
+            image2.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image2);
+            image2.addEventListener('click', function() {
+            document.body.removeChild(image2);
+        });
+        break;
+
             break;
+
         case 5:
-            alert("An image will appear in the middle of the screen5");
-            // Add code to display the image in the middle of the screen
             break;
+
         case 6:
-            alert("An image will appear in the middle of the screen6");
-            // Add code to display the image in the middle of the s6creen
-
+            alert("An image will appear in the middle of the screen 6");
+            const image3 = document.createElement('img');
+        image3.src = 'cell6.png'; // question
+        image3.style.width = '600px'; 
+        image3.style.height = '600px'; 
+        image3.style.position = 'absolute'; 
+        image3.style.top = '50%'; 
+        image3.style.left = '50%'; 
+        image3.style.transform = 'translate(-50%, -50%)'; 
+        document.body.appendChild(image3);
+        image3.addEventListener('click', function() {
+        document.body.removeChild(image3);
+        });
+        
             break;
+
         case 7:
-            alert("An image will appear in the middle of the screen7");
-            // Add code to display the image in the middle of the screen
             break;
-        case 8:
-            alert("An image will appear in the middle of the screen8");
-            // Add code to display the image in the middle of the screen
 
+            case 8:
+            alert("An image will appear in the middle of the screen 8");
+            const image4 = document.createElement('img');
+            image4.src = 'cell8.png'; // proceed block 10
+            image4.style.width = '600px'; 
+            image4.style.height = '600px'; 
+            image4.style.position = 'absolute'; 
+            image4.style.top = '50%'; 
+            image4.style.left = '50%'; 
+            image4.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image4);
+            image4.addEventListener('click', function() {
+            document.body.removeChild(image4);
+            });
             break;
-        case 9:
-            alert("An image will appear in the middle of the screen9");
-            // Add code to display the image in the middle of the screen
+
+
+    
+
+            case 9:
+            alert("An image will appear in the middle of the screen 9");
+            const image6 = document.createElement('img');
+            image6.src = 'cell9.png'; // another roll
+            image6.style.width = '600px';
+            image6.style.height = '600px';
+            image6.style.position = 'absolute';
+            image6.style.top = '50%';
+            image6.style.left = '50%';
+            image6.style.transform = 'translate(-50%, -50%)';
+            document.body.appendChild(image6);
+            image6.addEventListener('click', function() {
+            document.body.removeChild(image6);
+            });
             break;
+
         case 10:
-            alert("An image will appear in the middle of the screen10");
-            // Add code to display the image in the middle of the screen
+            break;
+
+        case 11:
+            alert("An image will appear in the middle of the screen 11");
+            const image7 = document.createElement('img');
+            image7.src = 'cell11.png'; // question
+            image7.style.width = '600px'; 
+            image7.style.height = '600px'; 
+            image7.style.position = 'absolute'; 
+            image7.style.top = '50%'; 
+            image7.style.left = '50%'; 
+            image7.style.transform = 'translate(-50%, -50%)'; 
+        document.body.appendChild(image7);
+        image7.addEventListener('click', function() {
+        document.body.removeChild(image7);
+        });
+            break;
+
+            case 12:
+            break;
+
+            case 13:
+            alert("An image will appear in the middle of the screen 13");
+            const image8 = document.createElement('img');
+            image8.src = 'cell13.png'; // roll
+            image8.style.width = '600px'; 
+            image8.style.height = '600px'; 
+            image8.style.position = 'absolute'; 
+            image8.style.top = '50%'; 
+            image8.style.left = '50%'; 
+            image8.style.transform = 'translate(-50%, -50%)'; 
+        document.body.appendChild(image8);
+        image8.addEventListener('click', function() {
+        document.body.removeChild(image8);
+        });
 
             break;
-        case 11:
-            alert("Hello world");
+            case 14:
+            break;
+
+            case 15:
+            alert("An image will appear in the middle of the screen 15");
+            const image9 = document.createElement('img');
+            image9.src = 'cell15.png'; // Replace with your actual image URL
+            image9.style.width = '600px'; 
+            image9.style.height = '600px'; 
+            image9.style.position = 'absolute'; 
+            image9.style.top = '50%'; 
+            image9.style.left = '50%'; 
+            image9.style.transform = 'translate(-50%, -50%)'; 
+        document.body.appendChild(image9);
+        image9.addEventListener('click', function() {
+        document.body.removeChild(image9);
+        });
+            break;
+            case 16:
+            break;
+
+            case 17:            
+
+            break;
+            case 18:
+            alert("An image will appear in the middle of the screen 18");
+            const image5 = document.createElement('img');
+            image5.src = 'cell18.png'; // Replace with your actual image URL
+            image5.style.width = '600px'; 
+            image5.style.height = '600px'; 
+            image5.style.position = 'absolute'; 
+            image5.style.top = '50%'; 
+            image5.style.left = '50%'; 
+            image5.style.transform = 'translate(-50%, -50%)'; 
+        document.body.appendChild(image5);
+        image5.addEventListener('click', function() {
+        document.body.removeChild(image5);
+        });
+            break;
+
+            case 19:
+            break;
+
+            case 20:
+            alert("An image will appear in the middle of the screen8");
+            const image10 = document.createElement('img');
+            image10.src = 'cell20.png'; // proceed block 23
+            image10.style.width = '600px'; 
+            image10.style.height = '600px'; 
+            image10.style.position = 'absolute'; 
+            image10.style.top = '50%'; 
+            image10.style.left = '50%'; 
+            image10.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image10);
+            image10.addEventListener('click', function() {
+            document.body.removeChild(image10);
+            });
+            break;
+
+            case 21:
+            break;
+
+            case 22:
+            alert("An image will appear in the middle of the screen10");
+            const image11 = document.createElement('img');
+            image11.src = 'cell22.png'; // question
+            image11.style.width = '600px'; 
+            image11.style.height = '600px'; 
+            image11.style.position = 'absolute'; 
+            image11.style.top = '50%'; 
+            image11.style.left = '50%'; 
+            image11.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image11);
+            image11.addEventListener('click', function() {
+            document.body.removeChild(image11);
+            });
+            break;
+
+            case 23:
+            break;
+
+            case 24:
+            alert("An image will appear in the middle of the screen10");
+            const image12 = document.createElement('img');
+            image12.src = 'cell24.png'; // question
+            image12.style.width = '600px'; 
+            image12.style.height = '600px'; 
+            image12.style.position = 'absolute'; 
+            image12.style.top = '50%'; 
+            image12.style.left = '50%'; 
+            image12.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image12);
+            image12.addEventListener('click', function() {
+            document.body.removeChild(image12);
+            });
+            break;
+
+            case 25:
+            alert("An image will appear in the middle of the screen10");
+            const image13 = document.createElement('img');
+            image13.src = 'cell25.png'; // another roll
+            image13.style.width = '600px'; 
+            image13.style.height = '600px'; 
+            image13.style.position = 'absolute'; 
+            image13.style.top = '50%'; 
+            image13.style.left = '50%'; 
+            image13.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image13);
+            image13.addEventListener('click', function() {
+            document.body.removeChild(image13);
+            });            
+            break;
+
+            case 26:
+            break;
+
+            case 27:
+            break;
+
+            case 28:
+            break;
+
+            case 29:
+            alert("An image will appear in the middle of the screen10");
+            const image14 = document.createElement('img');
+            image14.src = 'cell29.png'; // another roll
+            image14.style.width = '600px'; 
+            image14.style.height = '600px'; 
+            image14.style.position = 'absolute'; 
+            image14.style.top = '50%'; 
+            image14.style.left = '50%'; 
+            image14.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image14);
+            image14.addEventListener('click', function() {
+            document.body.removeChild(image14);
+            });            
+            break;
+
+            case 30:
+            break;
+
+            case 31:
+            alert("An image will appear in the middle of the screen10");
+            const image15 = document.createElement('img');
+            image15.src = 'cell31.png'; // another roll
+            image15.style.width = '600px'; 
+            image15.style.height = '600px'; 
+            image15.style.position = 'absolute'; 
+            image15.style.top = '50%'; 
+            image15.style.left = '50%'; 
+            image15.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image15);
+            image15.addEventListener('click', function() {
+            document.body.removeChild(image15);
+            });            
+            break;
+
+            case 32:
+            break;
+
+            case 33:
+            break;
+
+            case 34:
+            alert("An image will appear in the middle of the screen10");
+            const image16 = document.createElement('img');
+            image16.src = 'cell34.png'; // question
+            image16.style.width = '600px'; 
+            image16.style.height = '600px'; 
+            image16.style.position = 'absolute'; 
+            image16.style.top = '50%'; 
+            image16.style.left = '50%'; 
+            image16.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image16);
+            image16.addEventListener('click', function() {
+            document.body.removeChild(image16);
+            });            
+            break;
+
+            case 35:
+            break;
+
+            case 36:
+            alert("An image will appear in the middle of the screen10");
+            const image17 = document.createElement('img');
+            image17.src = 'cell36.png'; // another roll
+            image17.style.width = '600px'; 
+            image17.style.height = '600px'; 
+            image17.style.position = 'absolute'; 
+            image17.style.top = '50%'; 
+            image17.style.left = '50%'; 
+            image17.style.transform = 'translate(-50%, -50%)'; 
+            document.body.appendChild(image17);
+            image17.addEventListener('click', function() {
+            document.body.removeChild(image17);
+            });            
+            break;
+
+            case 37:
+            break;
+
+            case 38:
+            break;
+
+            case 39:
+            break;
+
+            case 40:
+            break;
+
+            case 41:
+            break;
+
+            case 42:
+            break;
+
+            case 43:
+            break;
+
+            case 44:
             break;
         // Add more cases for other cells if needed
         default:

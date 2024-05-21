@@ -736,8 +736,22 @@ function diceRoll() {
             displayAlert(currentPosition);
         }
 
+        if (currentPosition === 44) {
+            currentPosition = 47;   
+            playerToken.dataset.position = currentPosition;
+            cells[currentPosition - 1].appendChild(playerToken);
+            displayAlert(currentPosition);
+        }
+
+        if (currentPosition === 58) {
+            currentPosition = 64;   
+            playerToken.dataset.position = currentPosition;
+            cells[currentPosition - 1].appendChild(playerToken);
+            displayAlert(currentPosition);
+        }
+
         // Handle another roll condition
-        if (currentPosition === 9 || currentPosition === 13 || currentPosition === 25 || currentPosition === 36) {
+        if (currentPosition === 9 || currentPosition === 13 || currentPosition === 25 || currentPosition === 36 || currentPosition === 46) {
             setTimeout(() => {
                 rollButtonEl.disabled = false;
                 rollButtonEl.style.backgroundColor = '#000';
@@ -918,18 +932,57 @@ case 4:
             break;
 
         case 6:
-            const image43 = document.createElement('img');
-            image43.src = 'cell6.png'; // question
-            image43.style.width = '600px'; 
-            image43.style.height = '600px'; 
-            image43.style.position = 'absolute'; 
-            image43.style.top = '50%'; 
-            image43.style.left = '50%'; 
-            image43.style.transform = 'translate(-50%, -50%)'; 
-        document.body.appendChild(image43);
-        image43.addEventListener('click', function() {
-        document.body.removeChild(image43);
-        });
+        const container30 = document.createElement('div');
+    container301.style.position = 'absolute';
+    container301.style.top = '50%';
+    container301.style.left = '50%';
+    container301.style.transform = 'translate(-50%, -50%)';
+    container301.style.display = 'flex';
+    container301.style.alignItems = 'center';
+    document.body.appendChild(container301);
+
+    const leftButton30 = document.createElement('button'); // left button
+    leftButton30.style.width = '80px'; // Adjust button width as needed
+    leftButton30.style.height = '50px'; 
+    leftButton30.textContent = 'Tires';
+    leftButton30.style.marginRight = '10px';
+    leftButton30.style.cursor = 'pointer';
+    leftButton30.style.borderRadius = '10px'; // Rounded corners
+    container301.appendChild(leftButton30);
+
+    const image30 = document.createElement('img'); // image 
+    image30.src = 'cell6.png';
+    image30.style.width = '600px';
+    image30.style.height = '600px';
+    container301.appendChild(image30);
+
+    const rightButton30 = document.createElement('button'); // right button
+    rightButton30.style.width = '80px'; // Adjust button width as needed
+    rightButton30.style.height = '50px';
+    rightButton30.textContent = 'Brake Pads';
+    rightButton30.style.marginLeft = '10px';
+    rightButton30.style.cursor = 'pointer';
+    rightButton30.style.borderRadius = '10px'; // Rounded corners
+    container301.appendChild(rightButton30);
+
+    const correctButton30 = rightButton30;
+
+    leftButton30.addEventListener('click', function () {
+        if (leftButton30 !== correctButton30) {
+            alert("That is not the right answer, sorry. You will move backward");
+            // Move backward one cell
+            currentPosition -= 1; 
+        }
+        document.body.removeChild(container30);
+    });
+
+    rightButton30.addEventListener('click', function () {
+        if (rightButton30 === correctButton2) {
+            alert("You got the right answer! You will remain in your cell.");
+        }
+        document.body.removeChild(container30);
+    });
+    break;
         
             break;
 
@@ -1021,7 +1074,7 @@ case 4:
     const leftButton3 = document.createElement('button'); // left button
     leftButton3.style.width = '80px'; // Adjust button width as needed
     leftButton3.style.height = '50px'; 
-    leftButton3.textContent = 'Pedal';
+    leftButton3.textContent = 'Headlights';
     leftButton3.style.marginRight = '10px';
     leftButton3.style.cursor = 'pointer';
     leftButton3.style.borderRadius = '10px'; // Rounded corners
@@ -1036,7 +1089,7 @@ case 4:
     const rightbutton3 = document.createElement('button'); // right button
     rightbutton3.style.width = '80px'; // Adjust button width as needed
     rightbutton3.style.height = '50px';
-    rightbutton3.textContent = 'Ignition';
+    rightbutton3.textContent = 'Turn Signals';
     rightbutton3.style.marginLeft = '10px';
     rightbutton3.style.cursor = 'pointer';
     rightbutton3.style.borderRadius = '10px'; // Rounded corners
@@ -1082,7 +1135,7 @@ case 4:
     const leftButton4 = document.createElement('button'); // left button
     leftButton4.style.width = '80px'; // Adjust button width as needed
     leftButton4.style.height = '50px'; 
-    leftButton4.textContent = 'Pedal';
+    leftButton4.textContent = 'Odometer';
     leftButton4.style.marginRight = '10px';
     leftButton4.style.cursor = 'pointer';
     leftButton4.style.borderRadius = '10px'; // Rounded corners
@@ -1097,7 +1150,7 @@ case 4:
     const rightButton4 = document.createElement('button'); // right button
     rightButton4.style.width = '80px'; // Adjust button width as needed
     rightButton4.style.height = '50px';
-    rightButton4.textContent = 'Ignition';
+    rightButton4.textContent = 'Speedometer';
     rightButton4.style.marginLeft = '10px';
     rightButton4.style.cursor = 'pointer';
     rightButton4.style.borderRadius = '10px'; // Rounded corners
@@ -1157,7 +1210,7 @@ case 4:
     const leftButton5 = document.createElement('button'); // left button
     leftButton5.style.width = '80px'; // Adjust button width as needed
     leftButton5.style.height = '50px'; 
-    leftButton5.textContent = 'Pedal';
+    leftButton5.textContent = 'DashBoard';
     leftButton5.style.marginRight = '10px';
     leftButton5.style.cursor = 'pointer';
     leftButton5.style.borderRadius = '10px'; // Rounded corners
@@ -1172,7 +1225,7 @@ case 4:
     const rightButton5 = document.createElement('button'); // right button
     rightButton5.style.width = '80px'; // Adjust button width as needed
     rightButton5.style.height = '50px';
-    rightButton5.textContent = 'Ignition';
+    rightButton5.textContent = 'Windshield';
     rightButton5.style.marginLeft = '10px';
     rightButton5.style.cursor = 'pointer';
     rightButton5.style.borderRadius = '10px'; // Rounded corners
@@ -1214,7 +1267,7 @@ case 4:
     const leftButton6 = document.createElement('button'); // left button
     leftButton6.style.width = '80px'; // Adjust button width as needed
     leftButton6.style.height = '50px'; 
-    leftButton6.textContent = 'Pedal';
+    leftButton6.textContent = 'Brakes';
     leftButton6.style.marginRight = '10px';
     leftButton6.style.cursor = 'pointer';
     leftButton6.style.borderRadius = '10px'; // Rounded corners
@@ -1229,7 +1282,7 @@ case 4:
     const rightButton6 = document.createElement('button'); // right button
     rightButton6.style.width = '80px'; // Adjust button width as needed
     rightButton6.style.height = '50px';
-    rightButton6.textContent = 'Ignition';
+    rightButton6.textContent = 'Wheels';
     rightButton6.style.marginLeft = '10px';
     rightButton6.style.cursor = 'pointer';
     rightButton6.style.borderRadius = '10px'; // Rounded corners
@@ -1310,7 +1363,7 @@ case 4:
     const leftButton7 = document.createElement('button'); // left button
     leftButton7.style.width = '80px'; // Adjust button width as needed
     leftButton7.style.height = '50px'; 
-    leftButton7.textContent = 'Pedal';
+    leftButton7.textContent = 'Trunk';
     leftButton7.style.marginRight = '10px';
     leftButton7.style.cursor = 'pointer';
     leftButton7.style.borderRadius = '10px'; // Rounded corners
@@ -1325,7 +1378,7 @@ case 4:
     const rightButton7 = document.createElement('button'); // right button
     rightButton7.style.width = '80px'; // Adjust button width as needed
     rightButton7.style.height = '50px';
-    rightButton7.textContent = 'Ignition';
+    rightButton7.textContent = 'Compartment';
     rightButton7.style.marginLeft = '10px';
     rightButton7.style.cursor = 'pointer';
     rightButton7.style.borderRadius = '10px'; // Rounded corners
@@ -1370,7 +1423,7 @@ case 4:
     const leftButton8 = document.createElement('button'); // left button
     leftButton8.style.width = '80px'; // Adjust button width as needed
     leftButton8.style.height = '50px'; 
-    leftButton8.textContent = 'Pedal';
+    leftButton8.textContent = 'Steering Wheels';
     leftButton8.style.marginRight = '10px';
     leftButton8.style.cursor = 'pointer';
     leftButton8.style.borderRadius = '10px'; // Rounded corners
@@ -1385,7 +1438,7 @@ case 4:
     const rightButton8 = document.createElement('button'); // right button
     rightButton8.style.width = '80px'; // Adjust button width as needed
     rightButton8.style.height = '50px';
-    rightButton8.textContent = 'Ignition';
+    rightButton8.textContent = 'Gear Shift';
     rightButton8.style.marginLeft = '10px';
     rightButton8.style.cursor = 'pointer';
     rightButton8.style.borderRadius = '10px'; // Rounded corners
@@ -1464,7 +1517,7 @@ case 4:
     const leftButton9 = document.createElement('button'); // left button
     leftButton9.style.width = '80px'; // Adjust button width as needed
     leftButton9.style.height = '50px'; 
-    leftButton9.textContent = 'Pedal';
+    leftButton9.textContent = 'Clutch';
     leftButton9.style.marginRight = '10px';
     leftButton9.style.cursor = 'pointer';
     leftButton9.style.borderRadius = '10px'; // Rounded corners
@@ -1514,7 +1567,7 @@ case 4:
     container10.style.top = '50%';
     container10.style.left = '50%';
     container10.style.transform = 'translate(-50%, -50%)';
-    container10.style.display = 'flex';
+    container10.style.display = 'Airbag';
     container10.style.alignItems = 'center';
     document.body.appendChild(container10);
 
@@ -1536,7 +1589,7 @@ case 4:
     const rightButton10 = document.createElement('button'); // right button
     rightButton10.style.width = '80px'; // Adjust button width as needed
     rightButton10.style.height = '50px';
-    rightButton10.textContent = 'Ignition';
+    rightButton10.textContent = 'Seatbelt';
     rightButton10.style.marginLeft = '10px';
     rightButton10.style.cursor = 'pointer';
     rightButton10.style.borderRadius = '10px'; // Rounded corners
@@ -1614,7 +1667,7 @@ case 4:
     const leftButton11 = document.createElement('button'); // left button
     leftButton11.style.width = '80px'; // Adjust button width as needed
     leftButton11.style.height = '50px'; 
-    leftButton11.textContent = 'Pedal';
+    leftButton11.textContent = 'Brake Fluid';
     leftButton11.style.marginRight = '10px';
     leftButton11.style.cursor = 'pointer';
     leftButton11.style.borderRadius = '10px'; // Rounded corners
@@ -1629,7 +1682,7 @@ case 4:
     const rightButton11 = document.createElement('button'); // right button
     rightButton11.style.width = '80px'; // Adjust button width as needed
     rightButton11.style.height = '50px';
-    rightButton11.textContent = 'Ignition';
+    rightButton11.textContent = 'Coolant';
     rightButton11.style.marginLeft = '10px';
     rightButton11.style.cursor = 'pointer';
     rightButton11.style.borderRadius = '10px'; // Rounded corners
@@ -1671,7 +1724,7 @@ case 4:
     const leftButton12 = document.createElement('button'); // left button
     leftButton12.style.width = '80px'; // Adjust button width as needed
     leftButton12.style.height = '50px'; 
-    leftButton12.textContent = 'Pedal';
+    leftButton12.textContent = 'Climate control';
     leftButton12.style.marginRight = '10px';
     leftButton12.style.cursor = 'pointer';
     leftButton12.style.borderRadius = '10px'; // Rounded corners
@@ -1686,7 +1739,7 @@ case 4:
     const rightButton12 = document.createElement('button'); // right button
     rightButton12.style.width = '80px'; // Adjust button width as needed
     rightButton12.style.height = '50px';
-    rightButton12.textContent = 'Ignition';
+    rightButton12.textContent = 'Radio System';
     rightButton12.style.marginLeft = '10px';
     rightButton12.style.cursor = 'pointer';
     rightButton12.style.borderRadius = '10px'; // Rounded corners
@@ -1746,7 +1799,7 @@ case 4:
     const leftButton13 = document.createElement('button'); // left button
     leftButton13.style.width = '80px'; // Adjust button width as needed
     leftButton13.style.height = '50px'; 
-    leftButton13.textContent = 'Pedal';
+    leftButton13.textContent = 'Converter';
     leftButton13.style.marginRight = '10px';
     leftButton13.style.cursor = 'pointer';
     leftButton13.style.borderRadius = '10px'; // Rounded corners
@@ -1761,7 +1814,7 @@ case 4:
     const rightButton13 = document.createElement('button'); // right button
     rightButton13.style.width = '80px'; // Adjust button width as needed
     rightButton13.style.height = '50px';
-    rightButton13.textContent = 'Ignition';
+    rightButton13.textContent = 'Side Mirrors';
     rightButton13.style.marginLeft = '10px';
     rightButton13.style.cursor = 'pointer';
     rightButton13.style.borderRadius = '10px'; // Rounded corners
@@ -1878,7 +1931,7 @@ case 4:
     const leftButton17 = document.createElement('button'); // left button
     leftButton17.style.width = '80px'; // Adjust button width as needed
     leftButton17.style.height = '50px'; 
-    leftButton17.textContent = 'Pedal';
+    leftButton17.textContent = 'Alternator';
     leftButton17.style.marginRight = '10px';
     leftButton17.style.cursor = 'pointer';
     leftButton17.style.borderRadius = '10px'; // Rounded corners
@@ -1893,7 +1946,7 @@ case 4:
     const rightButton17 = document.createElement('button'); // right button
     rightButton17.style.width = '80px'; // Adjust button width as needed
     rightButton17.style.height = '50px';
-    rightButton17.textContent = 'Ignition';
+    rightButton17.textContent = 'Radio';
     rightButton17.style.marginLeft = '10px';
     rightButton17.style.cursor = 'pointer';
     rightButton17.style.borderRadius = '10px'; // Rounded corners

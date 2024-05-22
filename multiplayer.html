@@ -367,18 +367,17 @@ display:none;
 
 .titletext {
   font-family: 'Brush Script MT', cursive;
-    font-size: 1.5vw; /* Adjust the font size */
+    font-size: 1.5vw; 
   overflow-wrap: break-word;
-    color: #fff; /* White text color */
-    text-shadow: 0 0 20px blue; /* Glowing effect */
-}
+    color: #fff; 
+    text-shadow: 0 0 20px blue;
 
 .titletext2 {
   font-family: 'Brush Script MT', cursive;
-    font-size: 1.5vw; /* Adjust the font size */
+    font-size: 1.5vw; 
   overflow-wrap: break-word;
-    color: #fff; /* White text color */
-    text-shadow: 0 0 20px orange; /* Glowing effect */
+    color: #fff; 
+    text-shadow: 0 0 20px orange; 
 }
 
     </style>
@@ -434,17 +433,17 @@ const maps = [
         let player1Car, player2Car, selectedMap;
 
         displayCarOptions();
-        nextPlayer(); // Only call nextPlayer for multiplayer mode
+        nextPlayer(); 
 
 function displayCarOptions() {
     const carOptionsDiv = document.getElementById('carOptions');
     carOptionsDiv.innerHTML = '';
     cars.forEach(car => {
         const carButton = document.createElement('button');
-        const carName = document.createElement('span'); // Create a span element for the car name
-        carName.textContent = car.color; // Set the text content
-        carName.classList.add('titletext'); // Apply the same CSS class as for the map names
-        carButton.appendChild(carName); // Append the car name to the button
+        const carName = document.createElement('span'); 
+        carName.textContent = car.color; 
+        carName.classList.add('titletext'); 
+        carButton.appendChild(carName); 
         carButton.style.backgroundImage = `url(${car.image})`;
         carButton.style.backgroundSize = 'cover';
         carButton.style.width = '20vh';
@@ -455,8 +454,7 @@ function displayCarOptions() {
         carButton.onclick = () => selectCar(car);
         carButton.classList.add('breathing');
         
-        // Add glowing orange box shadow
-        carButton.style.boxShadow = '0 0 10px 5px rgba(0, 0, 255, 0.5)'; // Adjust values as needed
+        carButton.style.boxShadow = '0 0 10px 5px rgba(0, 0, 255, 0.5)'; 
         
         carOptionsDiv.appendChild(carButton);
     });
@@ -505,10 +503,10 @@ function showMapSelection() {
     mapOptionsDiv.innerHTML = ''; 
     maps.forEach((map, index) => {
         const mapButton = document.createElement('button');
-        const mapName = document.createElement('span'); // Create a span element for the map name
-        mapName.textContent = map.name; // Set the text content
-        mapName.classList.add('titletext2'); // Apply the CSS class for styling
-        mapButton.appendChild(mapName); // Append the map name to the button
+        const mapName = document.createElement('span'); 
+        mapName.textContent = map.name; 
+        mapName.classList.add('titletext2'); 
+        mapButton.appendChild(mapName); 
         mapButton.style.backgroundImage = `url(${map.image})`;
         mapButton.style.backgroundSize = 'cover'; 
         mapButton.style.width = '20vh';
@@ -518,9 +516,7 @@ function showMapSelection() {
         mapButton.style.marginBottom = '30px'; 
         mapButton.onclick = () => selectMap(map);
         mapButton.classList.add('breathing');
-        
-        // Add glowing blue box shadow
-        mapButton.style.boxShadow = '0 0 10px 5px rgba(255, 165, 0, 0.5)'; // Adjust values as needed
+        mapButton.style.boxShadow = '0 0 10px 5px rgba(255, 165, 0, 0.5)'; 
         
         mapOptionsDiv.appendChild(mapButton);
     });
@@ -694,18 +690,13 @@ function diceRoll() {
         let currentPosition = parseInt(playerToken.dataset.position) || 0;
         currentPosition += rollResult;
 
-        // Ensure the position doesn't exceed the grid limit
         currentPosition = Math.min(currentPosition, 63);
 
-        // Update token position
         playerToken.dataset.position = currentPosition;
         const cells = document.querySelectorAll('.cell');
-        cells[currentPosition - 1].appendChild(playerToken); // Subtract 1 to account for array index starting at 0
+        cells[currentPosition - 1].appendChild(playerToken); 
 
         displayAlert(currentPosition);
-
-
-
 
         if (currentPosition === 8) {
             currentPosition = 10;   
@@ -763,7 +754,6 @@ function diceRoll() {
                 rollButtonEl.style.opacity = '1';
                 rollButtonEl.style.cursor = 'pointer';
 
-                // Display appropriate buttons based on player turn
                 if (currentPlayer === 1) {
                     readyButtonEl.style.display = 'block';
                     rollButtonEl.style.display = 'none';
@@ -792,16 +782,16 @@ function diceRoll() {
     container.style.alignItems = 'center';
     document.body.appendChild(container);
 
-    const leftButton = document.createElement('button'); // left button
-    leftButton.style.width = '80px'; // Adjust button width as needed
+    const leftButton = document.createElement('button'); 
+    leftButton.style.width = '80px'; 
     leftButton.style.height = '50px'; 
     leftButton.textContent = 'Pedal';
     leftButton.style.marginRight = '10px';
     leftButton.style.cursor = 'pointer';
-    leftButton.style.borderRadius = '10px'; // Rounded corners
+    leftButton.style.borderRadius = '10px'; 
     container.appendChild(leftButton);
 
-    const image = document.createElement('img'); // image 
+    const image = document.createElement('img'); 
     image.src = 'cell2.png';
     image.style.width = '600px';
     image.style.height = '600px';
@@ -1937,10 +1927,5 @@ readyButtonEl.onclick = function() {
 
 </script>
 
-</body>
-</html>
-
-
-    </script>
 </body>
 </html>

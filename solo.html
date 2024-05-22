@@ -104,7 +104,7 @@ width: 100vw;
     letter-spacing: 5px;
 }
 
-        }
+}
 
         .image-container3 button {
             margin: 40px;
@@ -676,7 +676,7 @@ function getDiceFace(rollResult) {
     }
 }
 
-let isAITurn = false; // Flag to track if it's AI's turn
+let isAITurn = false; 
 
 function diceRoll() {
     rollButtonEl.disabled = true;
@@ -700,14 +700,19 @@ function diceRoll() {
         // Ensure the position doesn't exceed the grid limit
         currentPosition = Math.min(currentPosition, 63);
 
-        // Update token position
         playerToken.dataset.position = currentPosition;
         const cells = document.querySelectorAll('.cell');
-        cells[currentPosition - 1].appendChild(playerToken); // Subtract 1 to account for array index starting at 0
+        cells[currentPosition - 1].appendChild(playerToken); 
 
         displayAlert(currentPosition);
 
-        // Check for special positions and move accordingly
+        if (currentPosition === 4) {
+            currentPosition = 10;   
+            playerToken.dataset.position = currentPosition;
+            cells[currentPosition - 1].appendChild(playerToken);
+            displayAlert(currentPosition);
+        }
+
         if (currentPosition === 8) {
             currentPosition = 10;   
             playerToken.dataset.position = currentPosition;
@@ -750,7 +755,6 @@ function diceRoll() {
             displayAlert(currentPosition);
         }
 
-        // Handle another roll condition
         if (currentPosition === 9 || currentPosition === 13 || currentPosition === 25 || currentPosition === 36 || currentPosition === 46) {
             setTimeout(() => {
                 rollButtonEl.disabled = false;
@@ -760,7 +764,6 @@ function diceRoll() {
                 rollButtonEl.style.cursor = 'pointer';
             }, 1000);
         } else {
-            // Switch player and update button display
             switchPlayer();
             setTimeout(() => {
                 if (currentPlayer === 1) {
@@ -771,7 +774,6 @@ function diceRoll() {
                     rollButtonEl.style.display = 'none';
                 }       
 
-                // Update button styles based on player turn
                 if (currentPlayer === 1) {
                     readyButtonEl.innerText = "Ready";
                     rollButtonEl.innerText = "Roll Dice";
@@ -829,16 +831,16 @@ function displayAlert(cellNumber) {
     container.style.alignItems = 'center';
     document.body.appendChild(container);
 
-    const leftButton = document.createElement('button'); // left button
-    leftButton.style.width = '80px'; // Adjust button width as needed
+    const leftButton = document.createElement('button'); 
+    leftButton.style.width = '80px'; 
     leftButton.style.height = '50px'; 
     leftButton.textContent = 'Pedal';
     leftButton.style.marginRight = '10px';
     leftButton.style.cursor = 'pointer';
-    leftButton.style.borderRadius = '10px'; // Rounded corners
+    leftButton.style.borderRadius = '10px'; 
     container.appendChild(leftButton);
 
-    const image = document.createElement('img'); // image 
+    const image = document.createElement('img'); 
     image.src = 'cell2.png';
     image.style.width = '600px';
     image.style.height = '600px';
@@ -858,7 +860,6 @@ function displayAlert(cellNumber) {
     leftButton.addEventListener('click', function () {
         if (leftButton !== correctButton) {
             alert("That is not the right answer, sorry. You will move backward");
-            // Move backward one cell
             currentPosition -= 1; 
         }
         document.body.removeChild(container);
